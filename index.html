@@ -67,36 +67,6 @@
             overflow-x: hidden;
         }
 
-        /* Custom Cursor */
-        .cursor { display: none; }
-        @media (pointer: fine) {
-            .cursor {
-                display: block;
-                position: fixed;
-                width: 20px; height: 20px;
-                border: 2px solid var(--coral);
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 99998;
-                transition: transform 0.15s ease, width 0.2s ease, height 0.2s ease, background 0.2s ease;
-                transform: translate(-50%, -50%);
-            }
-            .cursor.hover {
-                width: 50px; height: 50px;
-                background: rgba(232, 93, 76, 0.1);
-                border-color: var(--amber);
-            }
-            .cursor-dot {
-                display: block;
-                position: fixed;
-                width: 6px; height: 6px;
-                background: var(--coral);
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 99999;
-                transform: translate(-50%, -50%);
-            }
-        }
 
         /* Grain texture */
         body::before {
@@ -1138,8 +1108,6 @@
     </div>
 
     <!-- Custom Cursor -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-dot" id="cursorDot"></div>
 
     <!-- Scroll Progress -->
     <div class="scroll-progress" id="scrollProgress"></div>
@@ -1639,32 +1607,6 @@
                 document.getElementById('loader').classList.add('hidden');
                 document.body.style.overflow = '';
             }, 1500);
-        });
-
-        // Custom Cursor
-        const cursor = document.getElementById('cursor');
-        const cursorDot = document.getElementById('cursorDot');
-        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            cursorDot.style.left = mouseX + 'px';
-            cursorDot.style.top = mouseY + 'px';
-        });
-
-        function animateCursor() {
-            cursorX += (mouseX - cursorX) * 0.15;
-            cursorY += (mouseY - cursorY) * 0.15;
-            cursor.style.left = cursorX + 'px';
-            cursor.style.top = cursorY + 'px';
-            requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        document.querySelectorAll('a, button, .service-card, .pricing-card, .philosophy-card, .faq-item').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
 
         // Particles
