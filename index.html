@@ -173,18 +173,28 @@
         }
         .btn-teal:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(13, 115, 119, 0.4); }
         
+        .nav-links li:last-child {
+            margin-left: 10px;
+        }
         .btn-nav {
-            padding: 12px 28px;
-            background: var(--teal);
+            display: inline-block !important;
+            padding: 12px 28px !important;
+            background: #0D7377 !important;
             color: white !important;
             font-weight: 600;
-            box-shadow: none;
-            overflow: visible;
+            border-radius: 100px !important;
+            border: none !important;
+            box-shadow: none !important;
+            overflow: visible !important;
+            position: relative !important;
+        }
+        .btn-nav::before,
+        .btn-nav::after {
+            display: none !important;
         }
         .btn-nav:hover {
+            background: #14919B !important;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(13, 115, 119, 0.4);
-            background: var(--teal-light);
         }
 
         /* Navigation */
