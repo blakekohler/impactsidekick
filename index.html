@@ -1099,6 +1099,16 @@
     </style>
 </head>
 <body>
+    <!-- Hidden form for Netlify detection -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+        <input name="bot-field">
+        <input name="name">
+        <input name="email">
+        <input name="organization">
+        <input name="service">
+        <textarea name="message"></textarea>
+    </form>
+
     <!-- Loading Screen -->
     <div class="loader" id="loader">
         <div class="loader-content">
