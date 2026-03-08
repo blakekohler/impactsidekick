@@ -173,13 +173,19 @@
         }
         .btn-teal:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(13, 115, 119, 0.4); }
         
-        .btn-nav { 
-            padding: 12px 28px; 
-            background: linear-gradient(135deg, var(--teal), var(--teal-light)); 
-            color: var(--cream) !important;
+        .btn-nav {
+            padding: 12px 28px;
+            background: var(--teal);
+            color: white !important;
             font-weight: 600;
+            box-shadow: none;
+            overflow: visible;
         }
-        .btn-nav:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(13, 115, 119, 0.4); }
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(13, 115, 119, 0.4);
+            background: var(--teal-light);
+        }
 
         /* Navigation */
         nav {
