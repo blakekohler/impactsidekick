@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design Intake Form | Impact Sidekick</title>
+    <meta name="description" content="Tell us about your organization and the website you need. This short intake form kicks off your $500 website project with Impact Sidekick.">
+    <link rel="canonical" href="https://impactsidekick.com/intake-form">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --teal: #0D7377;
+            --teal-light: #14919B;
+            --teal-dark: #095255;
+            --amber: #E8A838;
+            --amber-light: #F5C563;
+            --coral: #E85D4C;
+            --coral-light: #FF7A6B;
+            --slate: #1A2332;
+            --slate-light: #2D3A4F;
+            --cream: #FDF9F3;
+            --cream-dark: #F5EDE3;
+            --gray-500: #6B7280;
+            --gray-300: #D1D5DB;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--cream);
+            color: var(--slate);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Bricolage Grotesque', sans-serif; line-height: 1.15; }
+
+        .top-bar {
+            background: var(--cream);
+            border-bottom: 1px solid var(--cream-dark);
+            padding: 18px 24px;
+        }
+        .top-bar-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .logo-mark {
+            width: 42px; height: 42px;
+            background: linear-gradient(135deg, var(--amber), var(--coral));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: white;
+        }
+        .logo-text {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--slate);
+        }
+        .logo-text span { color: var(--teal); }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--gray-500);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover { color: var(--teal); }
+
+        .page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px 100px;
+        }
+
+        .page-header { text-align: center; margin-bottom: 48px; }
+        .page-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(13, 115, 119, 0.1);
+            color: var(--teal);
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 8px 18px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+        .page-header h1 { font-size: 2.75rem; font-weight: 800; margin-bottom: 16px; }
+        .page-header p { font-size: 1.15rem; color: var(--gray-500); max-width: 560px; margin: 0 auto; }
+
+        .intake-form {
+            background: white;
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 15px 60px rgba(26, 35, 50, 0.08);
+        }
+
+        .form-section { margin-bottom: 40px; }
+        .form-section:last-of-type { margin-bottom: 24px; }
+        .form-section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--cream-dark);
+        }
+        .form-section-title i { color: var(--teal); }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--slate);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .form-group .hint {
+            font-weight: 400;
+            color: var(--gray-500);
+            font-size: 0.85rem;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--gray-300);
+            border-radius: 12px;
+            background: white;
+            color: var(--slate);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--teal);
+            box-shadow: 0 0 0 4px rgba(13, 115, 119, 0.12);
+        }
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 20px;
+        }
+        .form-group textarea { min-height: 110px; resize: vertical; }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border: 2px solid var(--gray-300);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .checkbox-item:hover { border-color: var(--teal-light); }
+        .checkbox-item:has(input:checked) {
+            border-color: var(--teal);
+            background: rgba(13, 115, 119, 0.06);
+        }
+        .checkbox-item input {
+            width: 18px; height: 18px;
+            accent-color: var(--teal);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .form-submit { text-align: center; }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 18px 40px;
+            border-radius: 100px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(135deg, var(--coral), var(--coral-light));
+            color: white;
+            box-shadow: 0 4px 20px rgba(232, 93, 76, 0.4);
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(232, 93, 76, 0.5);
+        }
+        .form-submit p {
+            margin-top: 16px;
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 640px) {
+            .page-header h1 { font-size: 2rem; }
+            .intake-form { padding: 32px 24px; }
+            .form-row, .checkbox-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <a href="/" class="logo">
+                <div class="logo-mark"><i data-lucide="zap" style="width: 24px; height: 24px;"></i></div>
+                <span class="logo-text">Impact <span>Sidekick</span></span>
+            </a>
+            <a href="/" class="back-link">
+                <i data-lucide="arrow-left" style="width: 18px; height: 18px;"></i>
+                Back to Home
+            </a>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="page-header">
+            <span class="page-label">
+                <i data-lucide="palette" style="width: 18px; height: 18px;"></i>
+                Web Design Intake
+            </span>
+            <h1>Let's build your website</h1>
+            <p>Tell us about your organization and what you need. This takes about 5 minutes, and it gives us everything we need to hit the ground running on your discovery call.</p>
+        </div>
+
+        <form name="web-design-intake" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" class="intake-form">
+            <input type="hidden" name="form-name" value="web-design-intake">
+            <p style="display: none;">
+                <label>Don't fill this out if you're human: <input name="bot-field"></label>
+            </p>
+
+            <div class="form-section">
+                <h2 class="form-section-title"><i data-lucide="user" style="width: 22px; height: 22px;"></i>About You</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" placeholder="Jane Smith" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="jane@organization.org" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone <span class="hint">(optional)</span></label>
+                        <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="organization">Organization Name *</label>
+                        <input type="text" id="organization" name="organization" placeholder="Your nonprofit or company" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mission">What does your organization do? *</label>
+                    <textarea id="mission" name="mission" placeholder="A sentence or two about your mission and who you serve..." required></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="form-section-title"><i data-lucide="globe" style="width: 22px; height: 22px;"></i>Your Current Web Presence</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="current-website">Current Website <span class="hint">(if you have one)</span></label>
+                        <input type="url" id="current-website" name="current-website" placeholder="https://yoursite.org">
+                    </div>
+                    <div class="form-group">
+                        <label for="domain">Do you own a domain name?</label>
+                        <select id="domain" name="domain">
+                            <option value="">Select one...</option>
+                            <option value="yes">Yes, I own a domain</option>
+                            <option value="no">No, I need one</option>
+                            <option value="not-sure">Not sure</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="form-section-title"><i data-lucide="layout" style="width: 22px; height: 22px;"></i>The Website You Need</h2>
+                <div class="form-group">
+                    <label>What should the site do? <span class="hint">(check all that apply)</span></label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item"><input type="checkbox" name="goals[]" value="share-info">Share who we are & what we do</label>
+                        <label class="checkbox-item"><input type="checkbox" name="goals[]" value="donations">Accept donations</label>
+                        <label class="checkbox-item"><input type="checkbox" name="goals[]" value="volunteers">Recruit volunteers</label>
+                        <label class="checkbox-item"><input type="checkbox" name="goals[]" value="events">Promote events</label>
+                        <label class="checkbox-item"><input type="checkbox" name="goals[]" value="clients">Reach clients or customers</label>
+                        <label class="checkbox-item"><input type="checkbox" name="goals[]" value="other">Something else</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Which pages do you need? <span class="hint">(up to 10 included)</span></label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item"><input type="checkbox" name="pages[]" value="home" checked>Home</label>
+                        <label class="checkbox-item"><input type="checkbox" name="pages[]" value="about">About Us</label>
+                        <label class="checkbox-item"><input type="checkbox" name="pages[]" value="services">Services / Programs</label>
+                        <label class="checkbox-item"><input type="checkbox" name="pages[]" value="team">Team / Board</label>
+                        <label class="checkbox-item"><input type="checkbox" name="pages[]" value="donate">Donate</label>
+                        <label class="checkbox-item"><input type="checkbox" name="pages[]" value="events">Events</label>
+                        <label class="checkbox-item"><input type="checkbox" name="pages[]" value="blog">Blog / News</label>
+                        <label class="checkbox-item"><input type="checkbox" name="pages[]" value="contact">Contact</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Any special features? <span class="hint">(check all that apply)</span></label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item"><input type="checkbox" name="features[]" value="contact-form">Contact form</label>
+                        <label class="checkbox-item"><input type="checkbox" name="features[]" value="newsletter">Newsletter signup</label>
+                        <label class="checkbox-item"><input type="checkbox" name="features[]" value="donation-integration">Donation platform integration</label>
+                        <label class="checkbox-item"><input type="checkbox" name="features[]" value="calendar">Event calendar</label>
+                        <label class="checkbox-item"><input type="checkbox" name="features[]" value="gallery">Photo gallery</label>
+                        <label class="checkbox-item"><input type="checkbox" name="features[]" value="other">Something else</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="form-section-title"><i data-lucide="paintbrush" style="width: 22px; height: 22px;"></i>Design & Content</h2>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="branding">Do you have a logo & brand colors?</label>
+                        <select id="branding" name="branding">
+                            <option value="">Select one...</option>
+                            <option value="yes-both">Yes, logo and colors</option>
+                            <option value="logo-only">Logo only</option>
+                            <option value="in-progress">In progress</option>
+                            <option value="no">No, we need help with this</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="content">How ready is your content?</label>
+                        <select id="content" name="content">
+                            <option value="">Select one...</option>
+                            <option value="ready">Written and ready to go</option>
+                            <option value="partial">Some of it exists</option>
+                            <option value="need-help">We need help writing it</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="examples">Websites you like <span class="hint">(share 1-3 links and what you like about them)</span></label>
+                    <textarea id="examples" name="examples" placeholder="e.g. https://example.org — love the clean layout and big photos"></textarea>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="form-section-title"><i data-lucide="calendar-clock" style="width: 22px; height: 22px;"></i>Timeline & Anything Else</h2>
+                <div class="form-group">
+                    <label for="timeline">When do you need the site live?</label>
+                    <select id="timeline" name="timeline">
+                        <option value="">Select one...</option>
+                        <option value="asap">As soon as possible</option>
+                        <option value="1-month">Within a month</option>
+                        <option value="1-3-months">1-3 months</option>
+                        <option value="flexible">Flexible / no rush</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Anything else we should know?</label>
+                    <textarea id="notes" name="notes" placeholder="Questions, concerns, must-haves, deadlines tied to an event..."></textarea>
+                </div>
+            </div>
+
+            <div class="form-submit">
+                <button type="submit" class="btn">
+                    <span>Submit Intake Form</span>
+                    <i data-lucide="send" style="width: 20px; height: 20px;"></i>
+                </button>
+                <p>We'll review your answers and reach out within 1-2 business days to schedule your discovery call.</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
