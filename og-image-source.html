@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Plus+Jakarta+Sans:wght@500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1200px;
+            height: 630px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #FDF9F3;
+            position: relative;
+            overflow: hidden;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.35;
+        }
+        .blob-1 { width: 500px; height: 500px; background: #0D7377; top: -200px; right: -120px; }
+        .blob-2 { width: 420px; height: 420px; background: #E8A838; bottom: -180px; left: -100px; }
+        .blob-3 { width: 300px; height: 300px; background: #E85D4C; bottom: -120px; right: 200px; opacity: 0.22; }
+        .content {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 90px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 48px;
+        }
+        .logo-mark {
+            width: 72px; height: 72px;
+            background: linear-gradient(135deg, #E8A838, #E85D4C);
+            border-radius: 20px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 30px rgba(232, 93, 76, 0.35);
+        }
+        .logo-mark svg { width: 40px; height: 40px; }
+        .logo-text {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 800;
+            font-size: 40px;
+            color: #1A2332;
+        }
+        .logo-text span { color: #0D7377; }
+        h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 800;
+            font-size: 96px;
+            line-height: 1.05;
+            color: #1A2332;
+            margin-bottom: 36px;
+        }
+        h1 .highlight {
+            background: linear-gradient(135deg, #E8A838, #E85D4C);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            font-size: 30px;
+            font-weight: 500;
+            color: #6B7280;
+            max-width: 900px;
+            line-height: 1.4;
+        }
+        .subtitle strong { color: #0D7377; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="content">
+        <div class="logo">
+            <div class="logo-mark">
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+            </div>
+            <div class="logo-text">Impact <span>Sidekick</span></div>
+        </div>
+        <h1>Your mission.<br><span class="highlight">Our support.</span></h1>
+        <p class="subtitle">AI modernization for mission-driven organizations — <strong>websites, consulting, training & custom software</strong> without the enterprise price tag.</p>
+    </div>
+</body>
+</html>
