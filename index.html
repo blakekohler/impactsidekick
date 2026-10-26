@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impact Sidekick | Your Mission. Our Support.</title>
-    <meta name="description" content="AI modernization for mission-driven organizations. Professional websites for $500, zero-upfront AI consulting, staff training, and custom software—built for nonprofit budgets.">
+    <meta name="description" content="AI modernization for mission-driven organizations. Professional websites for $1,500, zero-upfront AI consulting, staff training, and custom software—built for nonprofit budgets.">
     <link rel="canonical" href="https://impactsidekick.com/">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
@@ -13,7 +13,7 @@
     <meta property="og:url" content="https://impactsidekick.com/">
     <meta property="og:site_name" content="Impact Sidekick">
     <meta property="og:title" content="Impact Sidekick | Your Mission. Our Support.">
-    <meta property="og:description" content="AI modernization for mission-driven organizations. Professional websites for $500, zero-upfront AI consulting, staff training, and custom software—built for nonprofit budgets.">
+    <meta property="og:description" content="AI modernization for mission-driven organizations. Professional websites for $1,500, zero-upfront AI consulting, staff training, and custom software—built for nonprofit budgets.">
     <meta property="og:image" content="https://impactsidekick.com/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -40,7 +40,7 @@
             "url": "https://pulseforgood.com"
         },
         "makesOffer": [
-            { "@type": "Offer", "name": "AI-Powered Web Design", "price": "500", "priceCurrency": "USD" },
+            { "@type": "Offer", "name": "AI-Powered Web Design", "price": "1500", "priceCurrency": "USD" },
             { "@type": "Offer", "name": "AI Process Consulting" },
             { "@type": "Offer", "name": "AI Staff Training", "price": "2500", "priceCurrency": "USD" },
             { "@type": "Offer", "name": "Custom Software Development" }
@@ -1252,7 +1252,7 @@
             <div class="hero-visual">
                 <div class="hero-card" id="heroCard">
                     <div class="hero-stat">
-                        <div class="hero-stat-value" data-count="500" data-prefix="$">$0</div>
+                        <div class="hero-stat-value" data-count="1500" data-prefix="$">$0</div>
                         <div class="hero-stat-label">Professional website, no hidden fees</div>
                     </div>
                     <div class="hero-stat">
@@ -1305,7 +1305,7 @@
                     <h3>AI-Powered Web Design</h3>
                     <p>Beautiful, modern websites built with AI assistance—at a fraction of traditional agency costs.</p>
                     <div class="service-price">
-                        <div class="service-price-main">$500</div>
+                        <div class="service-price-main">$1,500</div>
                         <div class="service-price-detail">One-time + $20/month hosting</div>
                     </div>
                     <ul class="service-features">
@@ -1463,7 +1463,7 @@
                     <span class="pricing-label">Web Design</span>
                     <h3 class="pricing-name">Beautiful Websites</h3>
                     <p class="pricing-description">Professional web presence without the agency markup</p>
-                    <div class="pricing-price">$500 <span>one-time</span></div>
+                    <div class="pricing-price">$1,500 <span>one-time</span></div>
                     <p class="pricing-note">+ $20/month hosting & support</p>
                     <ul class="pricing-features">
                         <li><i data-lucide="check"></i>Custom responsive design</li>
@@ -1527,7 +1527,7 @@
                 <h2 class="section-title">Questions? We've got answers.</h2>
             </div>
             <div class="faq-grid">
-                <div class="faq-item reveal"><button class="faq-question">How can you charge only $500 for a website?<span class="icon-wrap"><i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i></span></button><div class="faq-answer"><div class="faq-answer-inner">By leveraging AI tools in our design and development process, we can create beautiful, custom websites much faster than traditional agencies. We pass those savings directly to you. No corners cut—just smarter processes.</div></div></div>
+                <div class="faq-item reveal"><button class="faq-question">How can you charge only $1,500 for a website?<span class="icon-wrap"><i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i></span></button><div class="faq-answer"><div class="faq-answer-inner">By leveraging AI tools in our design and development process, we can create beautiful, custom websites much faster than traditional agencies. We pass those savings directly to you. No corners cut—just smarter processes.</div></div></div>
                 <div class="faq-item reveal"><button class="faq-question">What does "20% of verified savings" mean?<span class="icon-wrap"><i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i></span></button><div class="faq-answer"><div class="faq-answer-inner">Before we implement any AI solutions, we document your current processes and costs. After implementation, we track the actual savings through quarterly reports. You only pay 20% of what you actually save—verified and transparent.</div></div></div>
                 <div class="faq-item reveal"><button class="faq-question">Do you work with organizations outside the nonprofit sector?<span class="icon-wrap"><i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i></span></button><div class="faq-answer"><div class="faq-answer-inner">Yes! While our pricing is designed for mission-driven organizations, we work with any organization making a positive impact—social enterprises, B-corps, community organizations, and purpose-driven small businesses.</div></div></div>
                 <div class="faq-item reveal"><button class="faq-question">What's included in the $20/month hosting?<span class="icon-wrap"><i data-lucide="chevron-down" style="width: 20px; height: 20px;"></i></span></button><div class="faq-answer"><div class="faq-answer-inner">Fast, secure hosting with SSL certificates, daily backups, uptime monitoring, and unlimited minor content updates. Major redesigns or new features are quoted separately.</div></div></div>
@@ -1765,7 +1765,7 @@
                 const progress = Math.min((currentTime - start) / duration, 1);
                 const easeOut = 1 - Math.pow(1 - progress, 4);
                 const current = Math.floor(target * easeOut);
-                el.textContent = prefix + current + suffix;
+                el.textContent = prefix + current.toLocaleString('en-US') + suffix;
                 if (progress < 1) requestAnimationFrame(update);
             }
             requestAnimationFrame(update);
