@@ -243,7 +243,29 @@
         /* Navigation */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            padding: 20px 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 20px 0; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1), top 0s;
+        }
+
+        /* Top Banner */
+        .top-banner {
+            background: var(--teal-dark);
+            padding: 10px 0;
+            text-align: center;
+            font-size: 0.95rem;
+            position: relative; z-index: 1001;
+        }
+        .top-banner p { color: rgba(255, 255, 255, 0.85); }
+        .top-banner strong { color: white; }
+        .top-banner a {
+            color: var(--amber); font-weight: 700;
+            text-decoration: none; white-space: nowrap;
+            display: inline-flex; align-items: center; gap: 4px;
+            transition: all 0.3s ease;
+        }
+        .top-banner a:hover { color: var(--amber-light); gap: 8px; }
+        @media (max-width: 600px) {
+            .top-banner { font-size: 0.875rem; }
+            .top-banner-extra { display: none; }
         }
         nav.scrolled {
             background: rgba(253, 249, 243, 0.8);
@@ -1212,6 +1234,18 @@
         </div>
     </div>
 
+    <!-- Top Banner -->
+    <div class="top-banner" id="topBanner">
+        <div class="container">
+            <p><strong>New:</strong> The Sidekick Brief<span class="top-banner-extra">, one practical AI win for nonprofits every week</span>.
+                <a href="https://impactsidekick.beehiiv.com/subscribe" target="_blank" rel="noopener">
+                    Subscribe free
+                    <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+                </a>
+            </p>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav id="navbar">
         <div class="container">
@@ -1633,7 +1667,7 @@
             <div class="newsletter-inner reveal">
                 <div class="section-label"><i data-lucide="mail" style="width: 16px; height: 16px;"></i> Free newsletter</div>
                 <h2 class="section-title" id="newsletter-title">The Sidekick Brief</h2>
-                <p class="section-description">One practical AI win for your nonprofit, every two weeks. No hype, no jargon, just something your team can use on Monday.</p>
+                <p class="section-description">One practical AI win for your nonprofit, every week. No hype, no jargon, just something your team can use on Monday.</p>
                 <a href="https://impactsidekick.beehiiv.com/subscribe" target="_blank" rel="noopener" class="btn btn-primary magnetic">
                     <span class="btn-text">Get the Brief</span>
                     <i data-lucide="arrow-right" style="width: 22px; height: 22px;"></i>
@@ -1721,9 +1755,18 @@
         const scrollProgress = document.getElementById('scrollProgress');
         const navbar = document.getElementById('navbar');
         const backToTop = document.getElementById('backToTop');
+        const topBanner = document.getElementById('topBanner');
+
+        // Keep the fixed nav below the top banner until it scrolls away
+        const positionNav = () => {
+            navbar.style.top = Math.max(0, topBanner.offsetHeight - window.scrollY) + 'px';
+        };
+        positionNav();
+        window.addEventListener('resize', positionNav);
 
         window.addEventListener('scroll', () => {
             const scrollTop = window.scrollY;
+            positionNav();
             const docHeight = document.documentElement.scrollHeight - window.innerHeight;
             scrollProgress.style.width = (scrollTop / docHeight) * 100 + '%';
             navbar.classList.toggle('scrolled', scrollTop > 50);
