@@ -1010,6 +1010,8 @@
             padding: 20px 40px; font-size: 1.1rem;
         }
         .cta .btn-primary:hover { background: var(--slate-light); transform: translateY(-4px); }
+        .cta-book { margin: -16px auto 40px; }
+        .cta .cta-book-note { font-size: 1rem; margin: 16px auto 0; }
 
         /* Contact Form */
         .contact-form {
@@ -1611,6 +1613,14 @@
             <h2 class="reveal">Ready to power up?</h2>
             <p class="reveal">Let's talk about where you are, where you want to go, and how we can help you get there—on your terms.</p>
 
+            <div class="cta-book reveal">
+                <a href="https://calendar.app.google/ZGdDcX88nUizUxeP6" target="_blank" rel="noopener" class="btn btn-primary magnetic">
+                    <span class="btn-text">Book a free 15-min check-in</span>
+                    <i data-lucide="calendar" style="width: 22px; height: 22px;"></i>
+                </a>
+                <p class="cta-book-note">Prefer to write? Send us a note below.</p>
+            </div>
+
             <form name="contact" method="POST" action="/thank-you" data-netlify="true" netlify-honeypot="bot-field" class="contact-form reveal">
                 <input type="hidden" name="form-name" value="contact">
                 <p class="hidden" style="display: none;">
@@ -1710,7 +1720,7 @@
                 <div class="footer-col">
                     <h4>Contact</h4>
                     <ul>
-                        <li><a href="#contact">Schedule a Call</a></li>
+                        <li><a href="https://calendar.app.google/ZGdDcX88nUizUxeP6" target="_blank" rel="noopener">Schedule a Call</a></li>
                     </ul>
                 </div>
             </div>
