@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidekick Academy | Free AI Course for Nonprofit Staff</title>
+    <meta name="description" content="Sidekick Academy is a free 5-lesson AI course for nonprofit and government staff. Twenty minutes a lesson, done on your real work, taught by Hoopa, an AI tutor. Join the waitlist for a personal invite on December 1.">
+    <link rel="canonical" href="https://impactsidekick.com/academy">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://impactsidekick.com/academy">
+    <meta property="og:site_name" content="Impact Sidekick">
+    <meta property="og:title" content="Sidekick Academy | Become the AI person at your nonprofit">
+    <meta property="og:description" content="A free 5-lesson AI course for nonprofit and government staff. Twenty minutes a lesson, done on your real work, taught by Hoopa. Opens December 1.">
+    <meta property="og:image" content="https://impactsidekick.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Impact Sidekick — Your mission. Our support.">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sidekick Academy | Become the AI person at your nonprofit">
+    <meta name="twitter:description" content="A free 5-lesson AI course for nonprofit and government staff. Twenty minutes a lesson, done on your real work, taught by Hoopa. Opens December 1.">
+    <meta name="twitter:image" content="https://impactsidekick.com/og-image.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --teal: #0D7377;
+            --teal-light: #14919B;
+            --teal-dark: #095255;
+            --amber: #E8A838;
+            --amber-light: #F5C563;
+            --coral: #E85D4C;
+            --coral-light: #FF7A6B;
+            --slate: #1A2332;
+            --slate-light: #2D3A4F;
+            --cream: #FDF9F3;
+            --cream-dark: #F5EDE3;
+            --gray-500: #6B7280;
+            --gray-400: #9CA3AF;
+            --gray-300: #D1D5DB;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body { overflow-x: hidden; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--cream);
+            color: var(--slate);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1, h2, h3 { font-family: 'Bricolage Grotesque', sans-serif; line-height: 1.1; }
+
+        .hidden { display: none !important; }
+
+        /* Top bar (matches intake-form.html) */
+        .top-bar {
+            background: var(--cream);
+            border-bottom: 1px solid var(--cream-dark);
+            padding: 18px 24px;
+        }
+        .top-bar-inner {
+            max-width: 1040px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .logo-mark {
+            width: 42px; height: 42px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--amber), var(--coral));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: white;
+        }
+        .logo-text {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--slate);
+            white-space: nowrap;
+        }
+        .logo-text span { color: var(--teal); }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--gray-500);
+            font-weight: 600;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            transition: color 0.3s ease;
+        }
+        .back-link:hover { color: var(--teal); }
+
+        /* Page */
+        .page {
+            flex: 1;
+            width: 100%;
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+
+        .academy {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .page-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(13, 115, 119, 0.1);
+            color: var(--teal);
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 8px 18px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+        }
+        .pitch h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .pitch .subhead {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            max-width: 520px;
+            margin-bottom: 32px;
+        }
+
+        .points { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+        .point { display: flex; gap: 16px; align-items: flex-start; }
+        .point-icon {
+            width: 44px; height: 44px;
+            flex-shrink: 0;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            color: white;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            box-shadow: 0 4px 15px rgba(13, 115, 119, 0.25);
+        }
+        .point:nth-child(2) .point-icon {
+            background: linear-gradient(135deg, var(--amber), var(--amber-light));
+            box-shadow: 0 4px 15px rgba(232, 168, 56, 0.3);
+        }
+        .point:nth-child(3) .point-icon {
+            background: linear-gradient(135deg, var(--coral), var(--coral-light));
+            box-shadow: 0 4px 15px rgba(232, 93, 76, 0.3);
+        }
+        .point h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; }
+        .point p { color: var(--gray-500); font-size: 0.98rem; }
+
+        /* Form card (matches intake-form.html) */
+        .waitlist-card {
+            background: white;
+            border-radius: 24px;
+            padding: 32px 24px;
+            box-shadow: 0 15px 60px rgba(26, 35, 50, 0.08);
+            width: 100%;
+            min-width: 0;
+        }
+        .waitlist-card h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--slate);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--gray-300);
+            border-radius: 12px;
+            background: white;
+            color: var(--slate);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--teal);
+            box-shadow: 0 0 0 4px rgba(13, 115, 119, 0.12);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 18px 32px;
+            border-radius: 100px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            background: linear-gradient(135deg, var(--coral), var(--coral-light));
+            color: white;
+            box-shadow: 0 4px 20px rgba(232, 93, 76, 0.4);
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(232, 93, 76, 0.5);
+        }
+        .btn[disabled] { opacity: 0.7; cursor: wait; transform: none; }
+        .form-note {
+            margin-top: 16px;
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .form-error {
+            margin-top: 12px;
+            color: var(--coral);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Thank-you state */
+        .thanks { text-align: center; padding: 8px 0; }
+        .thanks-icon {
+            width: 72px; height: 72px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(13, 115, 119, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px 10px rgba(13, 115, 119, 0.2); }
+        }
+        .thanks h2 { font-size: 1.75rem; font-weight: 800; margin-bottom: 12px; }
+        .thanks p { color: var(--gray-500); font-size: 1.05rem; line-height: 1.7; }
+        .thanks p strong { color: var(--slate); font-weight: 600; }
+        .thanks .sig {
+            display: block;
+            margin-top: 12px;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 700;
+            color: var(--slate);
+        }
+
+        /* Footer (matches index.html palette) */
+        footer {
+            background: var(--slate);
+            color: white;
+            padding: 48px 24px;
+        }
+        .footer-inner {
+            max-width: 1040px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            align-items: flex-start;
+        }
+        .footer-inner .logo-text { color: white; }
+        .footer-inner .logo-text span { color: var(--teal-light); }
+        .footer-line { color: rgba(255, 255, 255, 0.7); line-height: 1.75; max-width: 560px; }
+        .footer-line a {
+            color: var(--amber);
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: color 0.3s ease;
+        }
+        .footer-line a:hover { color: var(--amber-light); }
+        .footer-bottom {
+            width: 100%;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 420px) {
+            .back-link-extra { display: none; }
+        }
+        @media (min-width: 640px) {
+            .pitch h1 { font-size: 2.75rem; }
+            .waitlist-card { padding: 40px; }
+        }
+        @media (min-width: 900px) {
+            .page { padding: 80px 24px 100px; }
+            .academy {
+                grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+                gap: 64px;
+            }
+            .pitch h1 { font-size: 3.25rem; }
+            .waitlist-card { padding: 48px; position: sticky; top: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <a href="/" class="logo">
+                <div class="logo-mark"><i data-lucide="zap" style="width: 24px; height: 24px;"></i></div>
+                <span class="logo-text">Impact <span>Sidekick</span></span>
+            </a>
+            <a href="/" class="back-link">
+                <i data-lucide="arrow-left" style="width: 18px; height: 18px;"></i>
+                Back<span class="back-link-extra">&nbsp;to Home</span>
+            </a>
+        </div>
+    </div>
+
+    <main class="page">
+        <div class="academy">
+            <section class="pitch" aria-labelledby="academy-title">
+                <span class="page-label">
+                    <i data-lucide="graduation-cap" style="width: 18px; height: 18px;"></i>
+                    Free course &middot; Opens December 1
+                </span>
+                <h1 id="academy-title">Become the AI person at your nonprofit.</h1>
+                <p class="subhead">Sidekick Academy is a free 5-lesson AI course for nonprofit and government staff. Twenty minutes a lesson, done on your real work, taught by Hoopa, an AI tutor we built.</p>
+
+                <ul class="points">
+                    <li class="point">
+                        <div class="point-icon"><i data-lucide="briefcase" style="width: 22px; height: 22px;"></i></div>
+                        <div>
+                            <h3>Real work, not theory.</h3>
+                            <p>Every lesson ends with something you'd be doing anyway, done faster.</p>
+                        </div>
+                    </li>
+                    <li class="point">
+                        <div class="point-icon"><i data-lucide="message-square-text" style="width: 22px; height: 22px;"></i></div>
+                        <div>
+                            <h3>Feedback from Hoopa.</h3>
+                            <p>Paste your work, get specific notes, earn XP.</p>
+                        </div>
+                    </li>
+                    <li class="point">
+                        <div class="point-icon"><i data-lucide="award" style="width: 22px; height: 22px;"></i></div>
+                        <div>
+                            <h3>A certificate worth sharing.</h3>
+                            <p>Finish all five and become a Certified AI Champion.</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="waitlist-card" aria-labelledby="waitlist-title">
+                <form name="academy-waitlist" method="POST" action="/academy/?submitted=1" data-netlify="true" netlify-honeypot="bot-field" id="waitlist-form">
+                    <input type="hidden" name="form-name" value="academy-waitlist">
+                    <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
+
+                    <h2 id="waitlist-title">Get a personal invite on December 1</h2>
+
+                    <div class="form-group">
+                        <label for="first_name">First name</label>
+                        <input type="text" id="first_name" name="first_name" autocomplete="given-name" placeholder="Jane" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Work email</label>
+                        <input type="email" id="email" name="email" autocomplete="email" placeholder="jane@organization.org" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="organization">Organization</label>
+                        <input type="text" id="organization" name="organization" autocomplete="organization" placeholder="Your nonprofit or agency" required>
+                    </div>
+
+                    <button type="submit" class="btn" id="waitlist-submit">
+                        <span>Join the waitlist</span>
+                        <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+                    </button>
+                    <p class="form-note">One email from Marc on December 1. That's it. We don't share your information.</p>
+                    <p class="form-error hidden" id="waitlist-error" role="alert">Something went wrong. Please try again, or email marc@impactsidekick.com.</p>
+                </form>
+
+                <div class="thanks hidden" id="waitlist-thanks" role="status" aria-live="polite">
+                    <div class="thanks-icon"><i data-lucide="check" style="width: 34px; height: 34px;"></i></div>
+                    <h2>You're on the list.</h2>
+                    <p>I'll send your invite from <strong>marc@impactsidekick.com</strong> on December 1.<span class="sig">Marc</span></p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <a href="/" class="logo">
+                <div class="logo-mark"><i data-lucide="zap" style="width: 24px; height: 24px;"></i></div>
+                <span class="logo-text">Impact <span>Sidekick</span></span>
+            </a>
+            <p class="footer-line">Hoopa was built by Impact Sidekick. We build tools like this for nonprofits. <a href="https://calendar.app.google/ZGdDcX88nUizUxeP6" target="_blank" rel="noopener">Ask us.</a></p>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Impact Sidekick. A Pulse For Good Company.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        (function () {
+            var form = document.getElementById('waitlist-form');
+            var thanks = document.getElementById('waitlist-thanks');
+            var errorEl = document.getElementById('waitlist-error');
+            var submitBtn = document.getElementById('waitlist-submit');
+
+            function showThanks() {
+                form.classList.add('hidden');
+                thanks.classList.remove('hidden');
+                thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            // Non-JS fallback: the form POSTs to /academy/?submitted=1
+            if (new URLSearchParams(window.location.search).get('submitted') === '1') {
+                showThanks();
+                if (window.history && window.history.replaceState) {
+                    window.history.replaceState(null, '', window.location.pathname);
+                }
+            }
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                errorEl.classList.add('hidden');
+                submitBtn.disabled = true;
+
+                var data = new FormData(form);
+                var body = new URLSearchParams(data).toString();
+
+                fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: body
+                })
+                .then(function (res) {
+                    if (!res.ok) { throw new Error('Netlify form POST failed: ' + res.status); }
+                    showThanks();
+                })
+                .catch(function () {
+                    submitBtn.disabled = false;
+                    errorEl.classList.remove('hidden');
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
