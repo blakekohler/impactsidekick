@@ -1102,13 +1102,21 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Newsletter */
-        .newsletter { padding: 100px 0; background: var(--cream); text-align: center; }
-        .newsletter-inner { max-width: 600px; margin: 0 auto; }
-        .newsletter .section-label { margin-bottom: 16px; }
-        .newsletter .section-title { font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: 16px; }
-        .newsletter .section-description { margin-bottom: 32px; }
-        .newsletter-fine { color: var(--gray-500); font-size: 0.95rem; margin-top: 16px; }
+        /* Free Resources (Brief + Academy) */
+        .free-resources { padding: 100px 0; background: var(--cream); }
+        .free-resources .section-header { margin-bottom: 48px; }
+        .fr-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 960px; margin: 0 auto; }
+        .fr-card { background: white; border-radius: 24px; padding: 36px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 10px 40px rgba(26, 35, 50, 0.06); border-top: 5px solid var(--coral); }
+        .fr-card--academy { border-top-color: var(--teal); }
+        .fr-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.1em; }
+        .fr-card h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.75rem; font-weight: 800; color: var(--slate); }
+        .fr-card > p:not(.fr-tag) { color: var(--gray-500); font-size: 1.05rem; line-height: 1.7; flex: 1; }
+        .fr-card .btn { align-self: flex-start; margin-top: 8px; }
+        .fr-more { text-align: center; color: var(--gray-500); margin-top: 32px; font-size: 1rem; }
+        .fr-more a { color: var(--teal); font-weight: 600; }
+        @media (max-width: 600px) { .fr-card { padding: 28px; } }
+        .nav-links a { white-space: nowrap; }
+        @media (max-width: 1200px) { .nav-links { gap: 26px; } }
 
         /* Footer */
         footer {
@@ -1231,6 +1239,7 @@
             <li><a href="#pricing" class="mobile-link"><i data-lucide="tag"></i>Pricing</a></li>
             <li><a href="#faq" class="mobile-link"><i data-lucide="help-circle"></i>FAQ</a></li>
             <li><a href="#about" class="mobile-link"><i data-lucide="heart"></i>About</a></li>
+            <li><a href="#free-resources" class="mobile-link"><i data-lucide="gift"></i>Free Resources</a></li>
         </ul>
         <div class="mobile-cta">
             <a href="#contact" class="mobile-link"><i data-lucide="zap" style="width: 20px; height: 20px;"></i>Get Started</a>
@@ -1262,6 +1271,7 @@
                 <li><a href="#pricing">Pricing</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#free-resources">Free Resources</a></li>
                 <li><a href="#contact" class="btn btn-nav"><span class="btn-text">Get Started</span></a></li>
             </ul>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
@@ -1672,19 +1682,35 @@
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="newsletter" id="newsletter" aria-labelledby="newsletter-title">
+    <!-- Free Resources Section (Brief + Academy) -->
+    <section class="free-resources" id="free-resources" aria-labelledby="free-resources-title">
         <div class="container">
-            <div class="newsletter-inner reveal">
-                <div class="section-label"><i data-lucide="mail" style="width: 16px; height: 16px;"></i> Free newsletter</div>
-                <h2 class="section-title" id="newsletter-title">The Sidekick Brief</h2>
-                <p class="section-description">One practical AI win for your nonprofit, every week. No hype, no jargon, just something your team can use on Monday.</p>
-                <a href="https://impactsidekick.beehiiv.com/subscribe" target="_blank" rel="noopener" class="btn btn-primary magnetic">
-                    <span class="btn-text">Get the Brief</span>
-                    <i data-lucide="arrow-right" style="width: 22px; height: 22px;"></i>
-                </a>
-                <p class="newsletter-fine">Unsubscribe any time.</p>
+            <div class="section-header reveal">
+                <div class="section-label"><i data-lucide="gift" style="width: 16px; height: 16px;"></i> Free resources</div>
+                <h2 class="section-title" id="free-resources-title">Get better at AI without paying for it</h2>
+                <p class="section-description">Two free ways to learn what we do for nonprofits every day.</p>
             </div>
+            <div class="fr-grid">
+                <article class="fr-card fr-card--brief reveal">
+                    <p class="fr-tag"><i data-lucide="mail" style="width: 16px; height: 16px;"></i> Every Tuesday</p>
+                    <h3>The Sidekick Brief</h3>
+                    <p>One practical AI win for your nonprofit each week, with a prompt you can copy and use that day. Short, plain, no hype.</p>
+                    <a href="https://impactsidekick.beehiiv.com/subscribe" target="_blank" rel="noopener" class="btn btn-primary magnetic">
+                        <span class="btn-text">Get the Brief</span>
+                        <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+                    </a>
+                </article>
+                <article class="fr-card fr-card--academy reveal">
+                    <p class="fr-tag"><i data-lucide="graduation-cap" style="width: 16px; height: 16px;"></i> Opens December 1</p>
+                    <h3>Sidekick Academy</h3>
+                    <p>A free 5-lesson AI course for nonprofit and government staff. Twenty minutes a lesson, done on your real work, with a certificate at the end.</p>
+                    <a href="/academy/" class="btn btn-teal magnetic">
+                        <span class="btn-text">Join the waitlist</span>
+                        <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+                    </a>
+                </article>
+            </div>
+            <p class="fr-more reveal">Also free: our <a href="/academy/resources/#prompts">nonprofit prompt library</a> and <a href="/academy/resources/#policy">one-page AI policy template</a>.</p>
         </div>
     </section>
 
