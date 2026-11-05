@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sidekick Academy | Free AI Course for Nonprofit Staff</title>
-    <meta name="description" content="Sidekick Academy is a free 5-lesson AI course for nonprofit and government staff. Twenty minutes a lesson, done on your real work, taught by Hoopa, an AI tutor. Join the waitlist for a personal invite on December 1.">
+    <meta name="description" content="Sidekick Academy is a free 5-lesson AI course for nonprofit and government staff. Twenty minutes a lesson, done on your real work, taught by Hoopa, an AI tutor. Start free today.">
     <link rel="canonical" href="https://impactsidekick.com/academy">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
@@ -13,7 +13,7 @@
     <meta property="og:url" content="https://impactsidekick.com/academy">
     <meta property="og:site_name" content="Impact Sidekick">
     <meta property="og:title" content="Sidekick Academy | Become the AI person at your nonprofit">
-    <meta property="og:description" content="A free 5-lesson AI course for nonprofit and government staff. Twenty minutes a lesson, done on your real work, taught by Hoopa. Opens December 1.">
+    <meta property="og:description" content="A free 5-lesson AI course for nonprofit and government staff. Twenty minutes a lesson, done on your real work, taught by Hoopa. Open now, free.">
     <meta property="og:image" content="https://impactsidekick.com/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -22,7 +22,7 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Sidekick Academy | Become the AI person at your nonprofit">
-    <meta name="twitter:description" content="A free 5-lesson AI course for nonprofit and government staff. Twenty minutes a lesson, done on your real work, taught by Hoopa. Opens December 1.">
+    <meta name="twitter:description" content="A free 5-lesson AI course for nonprofit and government staff. Twenty minutes a lesson, done on your real work, taught by Hoopa. Open now, free.">
     <meta name="twitter:image" content="https://impactsidekick.com/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -186,6 +186,11 @@
             width: 100%;
             min-width: 0;
         }
+        .lesson-list { list-style: none; counter-reset: l; margin: 18px 0 14px; padding: 0; display: grid; gap: 10px; }
+        .lesson-list li { counter-increment: l; position: relative; padding: 12px 14px 12px 50px; background: var(--cream); border-radius: 12px; }
+        .lesson-list li::before { content: counter(l); position: absolute; left: 14px; top: 13px; width: 24px; height: 24px; border-radius: 50%; background: var(--teal); color: white; font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
+        .lesson-list b { display: block; font-size: 0.98rem; color: var(--slate); }
+        .lesson-list span { font-size: 0.88rem; color: var(--gray-500); }
         .waitlist-card h2 {
             font-size: 1.5rem;
             font-weight: 700;
@@ -349,7 +354,7 @@
             <section class="pitch" aria-labelledby="academy-title">
                 <span class="page-label">
                     <i data-lucide="graduation-cap" style="width: 18px; height: 18px;"></i>
-                    Free course &middot; Opens December 1
+                    Free course &middot; Open now
                 </span>
                 <h1 id="academy-title">Become the AI person at your nonprofit.</h1>
                 <p class="subhead">Sidekick Academy is a free 5-lesson AI course for nonprofit and government staff. Twenty minutes a lesson, done on your real work, taught by Hoopa, an AI tutor we built.</p>
@@ -379,39 +384,20 @@
                 </ul>
             </section>
 
-            <section class="waitlist-card" aria-labelledby="waitlist-title">
-                <form name="academy-waitlist" method="POST" action="/academy/?submitted=1" data-netlify="true" netlify-honeypot="bot-field" id="waitlist-form">
-                    <input type="hidden" name="form-name" value="academy-waitlist">
-                    <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
-
-                    <h2 id="waitlist-title">Get a personal invite on December 1</h2>
-
-                    <div class="form-group">
-                        <label for="first_name">First name</label>
-                        <input type="text" id="first_name" name="first_name" autocomplete="given-name" placeholder="Jane" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Work email</label>
-                        <input type="email" id="email" name="email" autocomplete="email" placeholder="jane@organization.org" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="organization">Organization</label>
-                        <input type="text" id="organization" name="organization" autocomplete="organization" placeholder="Your nonprofit or agency" required>
-                    </div>
-
-                    <button type="submit" class="btn" id="waitlist-submit">
-                        <span>Join the waitlist</span>
-                        <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
-                    </button>
-                    <p class="form-note">One email from Marc on December 1. That's it. We don't share your information.</p>
-                    <p class="form-error hidden" id="waitlist-error" role="alert">Something went wrong. Please try again, or email marc@impactsidekick.com.</p>
-                </form>
-
-                <div class="thanks hidden" id="waitlist-thanks" role="status" aria-live="polite">
-                    <div class="thanks-icon"><i data-lucide="check" style="width: 34px; height: 34px;"></i></div>
-                    <h2>You're on the list.</h2>
-                    <p>I'll send your invite from <strong>marc@impactsidekick.com</strong> on December 1.<span class="sig">Marc</span></p>
-                </div>
+            <section class="waitlist-card" aria-labelledby="start-title">
+                <h2 id="start-title">Start Sidekick Academy free</h2>
+                <ol class="lesson-list">
+                    <li><b>What AI can actually do for your org</b><span>Name the 3 tasks that eat your week</span></li>
+                    <li><b>Prompting that works</b><span>Draft one real email or doc you owe someone</span></li>
+                    <li><b>Automate one workflow this week</b><span>Hand one recurring task to AI</span></li>
+                    <li><b>AI for the mission</b><span>A grant paragraph, donor letter or public FAQ</span></li>
+                    <li><b>Doing this safely</b><span>Your org's one-page AI policy</span></li>
+                </ol>
+                <p class="form-note" style="margin:0 0 18px">Then a 5-minute readiness assessment and your certificate.</p>
+                <a class="btn" href="https://academy.impactsidekick.com/join?utm_source=site&amp;utm_campaign=academy-launch" style="width:100%;justify-content:center;text-decoration:none">
+                    <span>Start free</span><i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+                </a>
+                <p class="form-note">Already started? <a href="https://academy.impactsidekick.com/sign-in" style="color:var(--teal);font-weight:600">Log in</a>. Getting your team through it? Have everyone sign up with the same organization name.</p>
             </section>
         </div>
     </main>
@@ -432,49 +418,7 @@
     <script>
         lucide.createIcons();
 
-        (function () {
-            var form = document.getElementById('waitlist-form');
-            var thanks = document.getElementById('waitlist-thanks');
-            var errorEl = document.getElementById('waitlist-error');
-            var submitBtn = document.getElementById('waitlist-submit');
 
-            function showThanks() {
-                form.classList.add('hidden');
-                thanks.classList.remove('hidden');
-                thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-
-            // Non-JS fallback: the form POSTs to /academy/?submitted=1
-            if (new URLSearchParams(window.location.search).get('submitted') === '1') {
-                showThanks();
-                if (window.history && window.history.replaceState) {
-                    window.history.replaceState(null, '', window.location.pathname);
-                }
-            }
-
-            form.addEventListener('submit', function (e) {
-                e.preventDefault();
-                errorEl.classList.add('hidden');
-                submitBtn.disabled = true;
-
-                var data = new FormData(form);
-                var body = new URLSearchParams(data).toString();
-
-                fetch('/', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: body
-                })
-                .then(function (res) {
-                    if (!res.ok) { throw new Error('Netlify form POST failed: ' + res.status); }
-                    showThanks();
-                })
-                .catch(function () {
-                    submitBtn.disabled = false;
-                    errorEl.classList.remove('hidden');
-                });
-            });
-        })();
     </script>
 </body>
 </html>

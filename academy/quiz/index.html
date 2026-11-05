@@ -481,7 +481,7 @@
             <section class="res-card" id="email-card" hidden>
                 <div class="res-body">
                     <h3 style="margin-top:0">Want your results by email?</h3>
-                    <p>We'll send your score and next steps, plus an invite to Sidekick Academy when it opens December 1. Optional.</p>
+                    <p>We'll send your score and next steps, plus a link to Sidekick Academy, our free 5-lesson course. Optional.</p>
                     <form name="academy-quiz" method="POST" action="/academy/quiz/?sent=1" data-netlify="true" netlify-honeypot="bot-field" id="email-form" class="email-box">
                         <input type="hidden" name="form-name" value="academy-quiz">
                         <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
@@ -495,7 +495,7 @@
                         <input type="email" id="f-email" name="email" autocomplete="email" required>
                         <label for="f-org">Organization</label>
                         <input type="text" id="f-org" name="organization" autocomplete="organization">
-                        <label class="chk"><input type="checkbox" name="academy_waitlist" value="yes" checked> Also put me on the Sidekick Academy waitlist</label>
+                        <label class="chk"><input type="checkbox" name="academy_waitlist" value="yes" checked> Also send me a link to start Sidekick Academy</label>
                         <div class="quiz-actions"><button type="submit" class="btn-quiz coral" id="email-submit"><span>Email me my results</span></button></div>
                         <p class="fine" id="email-error" hidden>Something went wrong. Try again, or email marc@impactsidekick.com.</p>
                         <p class="fine">One person reads every signup. We never sell your information.</p>
