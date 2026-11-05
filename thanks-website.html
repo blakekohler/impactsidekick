@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 2 of 2 — Reserve Your Build | Impact Sidekick</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --teal: #0D7377;
+            --teal-light: #14919B;
+            --amber: #E8A838;
+            --coral: #E85D4C;
+            --slate: #1A2332;
+            --cream: #FDF9F3;
+            --gray: #6B7280;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, var(--coral), var(--amber));
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 24px;
+        }
+        .card {
+            background: white; border-radius: 24px;
+            padding: 52px 48px; text-align: center;
+            max-width: 560px; width: 100%;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+        }
+        .step {
+            display: inline-block; font-size: 0.8rem; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--teal); background: rgba(13, 115, 119, 0.08);
+            padding: 6px 14px; border-radius: 100px; margin-bottom: 18px;
+        }
+        h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 2.2rem; font-weight: 800; color: var(--slate);
+            line-height: 1.15; margin-bottom: 14px;
+        }
+        .lede { font-size: 1.05rem; color: var(--gray); line-height: 1.65; margin-bottom: 26px; }
+        .includes {
+            list-style: none; text-align: left; background: var(--cream);
+            border-radius: 16px; padding: 18px 22px; margin-bottom: 28px;
+        }
+        .includes li {
+            display: flex; gap: 10px; align-items: flex-start;
+            padding: 6px 0; font-size: 0.95rem; color: var(--slate);
+        }
+        .includes li i { color: var(--teal); flex-shrink: 0; margin-top: 2px; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; padding: 18px 28px; border-radius: 100px;
+            font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1.05rem;
+            text-decoration: none; background: var(--teal); color: white;
+            transition: all 0.3s ease;
+        }
+        .btn:hover { background: var(--slate); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(13, 115, 119, 0.35); }
+        .fine { font-size: 0.85rem; color: var(--gray); margin-top: 12px; line-height: 1.5; }
+        .alt { margin-top: 24px; font-size: 0.95rem; color: var(--gray); }
+        .alt a { color: var(--teal); font-weight: 600; }
+        @media (max-width: 520px) { .card { padding: 40px 24px; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <span class="step">Step 2 of 2</span>
+        <h1>Reserve your build</h1>
+        <p class="lede">Thanks<span id="org-thanks"></span>, we've got your answers. Reserve your spot on the build calendar and we'll get started.</p>
+
+        <ul class="includes">
+            <li><i data-lucide="check" style="width:18px;height:18px;"></i>Custom, mobile-friendly site, up to 10 pages</li>
+            <li><i data-lucide="check" style="width:18px;height:18px;"></i>A working donate path and contact forms</li>
+            <li><i data-lucide="check" style="width:18px;height:18px;"></i>First draft in about 5 business days, live in about a week</li>
+            <li><i data-lucide="check" style="width:18px;height:18px;"></i>Hosting, security and unlimited small updates for $20/month</li>
+        </ul>
+
+        <a id="pay-btn" class="btn" href="https://buy.stripe.com/28E6oG2N99QUgpWcG6gA800">
+            <span>Reserve your build — $1,500 + $20/mo</span>
+            <i data-lucide="arrow-right" style="width:20px;height:20px;"></i>
+        </a>
+        <p class="fine">Secure checkout by Stripe. Hosting starts today and renews monthly; cancel anytime.</p>
+
+        <p class="alt">Prefer to talk first? <a href="https://calendar.app.google/JzwQNB4X4AhqmSLQA" target="_blank" rel="noopener">Book 15 minutes</a></p>
+    </main>
+
+    <script>
+        lucide.createIcons();
+        (function () {
+            var email = '', org = '';
+            try {
+                email = sessionStorage.getItem('is_intake_email') || '';
+                org = sessionStorage.getItem('is_intake_org') || '';
+            } catch (e) {}
+            // Also accept ?email= in case the session value isn't available.
+            if (!email) {
+                var q = new URLSearchParams(window.location.search).get('email');
+                if (q) email = q;
+            }
+            if (email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                var btn = document.getElementById('pay-btn');
+                btn.href = btn.href + '?prefilled_email=' + encodeURIComponent(email);
+            }
+            if (org) document.getElementById('org-thanks').textContent = ', ' + org;
+        })();
+    </script>
+</body>
+</html>

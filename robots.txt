@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /thank-you
+Disallow: /thanks-website
+Disallow: /welcome
 
 Sitemap: https://impactsidekick.com/sitemap.xml

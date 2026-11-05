@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You're All Set | Impact Sidekick</title>
+    <meta name="robots" content="noindex">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --teal: #0D7377;
+            --teal-light: #14919B;
+            --amber: #E8A838;
+            --coral: #E85D4C;
+            --slate: #1A2332;
+            --cream: #FDF9F3;
+            --gray: #6B7280;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, var(--coral), var(--amber));
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 24px;
+        }
+        .card {
+            background: white; border-radius: 24px;
+            padding: 56px 48px; text-align: center;
+            max-width: 540px; width: 100%;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+        }
+        .icon-wrap {
+            width: 80px; height: 80px;
+            background: linear-gradient(135deg, var(--teal), var(--teal-light));
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 26px;
+        }
+        .icon-wrap i { color: white; }
+        h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 2.3rem; font-weight: 800; color: var(--slate); margin-bottom: 14px;
+        }
+        .lede { font-size: 1.1rem; color: var(--gray); line-height: 1.65; margin-bottom: 26px; }
+        .next {
+            list-style: none; text-align: left; background: var(--cream);
+            border-radius: 16px; padding: 18px 22px; margin-bottom: 30px;
+        }
+        .next li { display: flex; gap: 12px; padding: 8px 0; font-size: 0.97rem; color: var(--slate); line-height: 1.5; }
+        .next li b { color: var(--teal); min-width: 22px; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 15px 30px; border-radius: 100px;
+            font-weight: 600; font-size: 1rem; text-decoration: none;
+            background: var(--slate); color: white; transition: all 0.3s ease;
+        }
+        .btn:hover { background: var(--teal); transform: translateY(-2px); }
+        .fine { margin-top: 20px; font-size: 0.88rem; color: var(--gray); }
+        .fine a { color: var(--teal); font-weight: 600; }
+        @media (max-width: 520px) { .card { padding: 40px 24px; } h1 { font-size: 1.9rem; } }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <div class="icon-wrap"><i data-lucide="check" style="width:40px;height:40px;"></i></div>
+        <h1 id="headline">You're all set!</h1>
+        <p class="lede" id="lede">Thanks for your payment. Your receipt is on its way to your inbox.</p>
+
+        <!-- Website build buyers (default) -->
+        <ul class="next" id="next-website">
+            <li><b>1.</b>Within one business day, Marc emails you the kickoff questions.</li>
+            <li><b>2.</b>First draft in about 5 business days after we have your content.</li>
+            <li><b>3.</b>Your site goes live in about a week.</li>
+        </ul>
+
+        <!-- Workshop buyers (?for=workshop) -->
+        <ul class="next" id="next-workshop" hidden>
+            <li><b>1.</b>Within one business day, Marc emails you to pick your workshop date.</li>
+            <li><b>2.</b>A short call to tailor the agenda to your team and your tools.</li>
+            <li><b>3.</b>Workshop day, then 30 days of follow-up support.</li>
+        </ul>
+
+        <a href="/" class="btn"><span>Back to Impact Sidekick</span><i data-lucide="arrow-right" style="width:20px;height:20px;"></i></a>
+        <p class="fine">Questions? Email <a href="mailto:marc@impactsidekick.com">marc@impactsidekick.com</a></p>
+    </main>
+
+    <script>
+        lucide.createIcons();
+        if (new URLSearchParams(window.location.search).get('for') === 'workshop') {
+            document.getElementById('next-website').hidden = true;
+            document.getElementById('next-workshop').hidden = false;
+            document.getElementById('headline').textContent = 'Your workshop is booked!';
+        } else {
+            document.getElementById('headline').textContent = "You're on the calendar!";
+        }
+    </script>
+</body>
+</html>
