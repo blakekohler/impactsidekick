@@ -333,6 +333,23 @@
         .res-card-head p { color: var(--gray-500); margin-top: 6px; }
         .dl-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 100px; background: linear-gradient(135deg, var(--teal), var(--teal-light)); color: white; font-weight: 600; text-decoration: none; white-space: nowrap; }
         .dl-btn:hover { transform: translateY(-2px); }
+        /* Brief gate on the Word downloads (soft gate: page text stays public) */
+        .dl-note { display: block; font-size: 0.8rem; color: var(--gray-500); margin-top: 6px; text-align: right; }
+        .gate-backdrop { position: fixed; inset: 0; background: rgba(26,35,50,0.55); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 50; }
+        .gate { background: white; border-radius: 24px; max-width: 460px; width: 100%; padding: 28px; position: relative; box-shadow: 0 24px 60px rgba(0,0,0,0.25); }
+        .gate h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; padding-right: 32px; }
+        .gate p { color: #374151; margin: 8px 0; }
+        .gate-close { position: absolute; top: 14px; right: 14px; border: 0; background: none; cursor: pointer; color: var(--gray-500); padding: 6px; border-radius: 100px; }
+        .gate-close:hover { color: var(--slate); background: var(--cream); }
+        .gate form { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+        .gate label { font-weight: 600; font-size: 0.9rem; }
+        .gate input[type=email] { padding: 13px 16px; border: 1px solid var(--gray-300); border-radius: 12px; font: 400 1rem 'Plus Jakarta Sans', sans-serif; }
+        .gate input[type=email]:focus { outline: 2px solid var(--teal-light); border-color: var(--teal); }
+        .gate button[type=submit], .gate .dl-btn { justify-content: center; border: 0; cursor: pointer; font: 600 1rem 'Plus Jakarta Sans', sans-serif; }
+        .gate .gate-fine { font-size: 0.82rem; color: var(--gray-500); }
+        .gate .gate-error { color: var(--coral); font-size: 0.9rem; }
+        .gate-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+        .gate-links { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
         .res-body h3 { font-size: 1.35rem; font-weight: 800; margin: 28px 0 12px; }
         .res-body h4 { font-size: 1.1rem; font-weight: 700; margin: 22px 0 8px; }
         .res-body p, .res-body li { color: #374151; line-height: 1.7; }
@@ -385,7 +402,7 @@
                         <h2 id="prompts-title">Nonprofit Prompt Library</h2>
                         <p>15 copy-and-paste prompts. Fill in the [brackets], paste into any AI chat tool, then keep the conversation going until it's right.</p>
                     </div>
-                    <a class="dl-btn" href="/academy/resources/sidekick-academy-prompt-library.docx" download><i data-lucide="download" style="width:18px;height:18px;"></i>Download (Word)</a>
+                    <a class="dl-btn" data-gate="prompt-library" href="/academy/resources/sidekick-academy-prompt-library.docx" download><i data-lucide="download" style="width:18px;height:18px;"></i><span>Download (Word)</span></a>
                 </div>
                 <div class="res-body">
 <h3 id="how-to-use-these">How to use these</h3>
@@ -451,7 +468,7 @@ applications, and verify every number before submitting.</em></p>
                         <h2 id="policy-title">One-Page AI Use Policy Template</h2>
                         <p>A fill-in-the-blanks policy for nonprofits and government teams. Replace every [bracket], cut what doesn't apply, and get sign-off from your ED or department head.</p>
                     </div>
-                    <a class="dl-btn" href="/academy/resources/sidekick-academy-ai-policy-template.docx" download><i data-lucide="download" style="width:18px;height:18px;"></i>Download (Word)</a>
+                    <a class="dl-btn" data-gate="ai-policy" href="/academy/resources/sidekick-academy-ai-policy-template.docx" download><i data-lucide="download" style="width:18px;height:18px;"></i><span>Download (Word)</span></a>
                 </div>
                 <div class="res-body">
 <h3 id="how-to-use-this-template">How to use this template</h3>
@@ -544,6 +561,109 @@ confidential information is entered into an AI tool by mistake, tell
             </div>
         </div>
     </footer>
+
+    <!-- Netlify Forms backup capture for the Brief gate (detected at deploy) -->
+    <form name="brief-gate" data-netlify="true" netlify-honeypot="website" hidden>
+        <input type="email" name="email"><input type="text" name="resource"><input type="text" name="website">
+    </form>
+
+    <div class="gate-backdrop hidden" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+        <div class="gate">
+            <button type="button" class="gate-close" id="gate-close" aria-label="Close"><i data-lucide="x" style="width:20px;height:20px;"></i></button>
+            <div id="gate-ask">
+                <h2 id="gate-title">Get the Word file, free</h2>
+                <p>Join The Sidekick Brief: one practical AI win for your nonprofit, every Tuesday. About a 3-minute read. Unsubscribe any time.</p>
+                <form id="gate-form" novalidate>
+                    <label for="gate-email">Work email</label>
+                    <input type="email" id="gate-email" name="email" autocomplete="email" placeholder="you@yourorg.org" required>
+                    <div class="gate-hp" aria-hidden="true"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+                    <button type="submit" class="dl-btn" id="gate-submit"><span>Subscribe and download</span></button>
+                    <p class="gate-error hidden" id="gate-error" role="alert"></p>
+                    <p class="gate-fine">Already a subscriber? Enter the same email and the download unlocks.</p>
+                </form>
+            </div>
+            <div id="gate-done" class="hidden">
+                <h2>You're in. Here are your downloads.</h2>
+                <p>The Brief lands in your inbox on Tuesdays. These links stay unlocked on this browser.</p>
+                <div class="gate-links">
+                    <a class="dl-btn" href="/academy/resources/sidekick-academy-prompt-library.docx" download><i data-lucide="download" style="width:18px;height:18px;"></i>Prompt Library (Word)</a>
+                    <a class="dl-btn" href="/academy/resources/sidekick-academy-ai-policy-template.docx" download><i data-lucide="download" style="width:18px;height:18px;"></i>AI Use Policy template (Word)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var KEY = 'isBriefUnlocked';
+            var unlocked = false;
+            try { unlocked = localStorage.getItem(KEY) === '1'; } catch (e) {}
+            var params = new URLSearchParams(location.search);
+            if (params.get('unlock') === 'brief') { unlocked = true; try { localStorage.setItem(KEY, '1'); } catch (e) {} }
+            var gate = document.getElementById('gate');
+            var form = document.getElementById('gate-form');
+            var err = document.getElementById('gate-error');
+            var submit = document.getElementById('gate-submit');
+            var current = 'resources', lastFocus = null;
+
+            function open(resource) {
+                current = resource; lastFocus = document.activeElement;
+                gate.classList.remove('hidden');
+                document.getElementById('gate-email').focus();
+            }
+            function close() { gate.classList.add('hidden'); if (lastFocus) lastFocus.focus(); }
+            function unlock() {
+                unlocked = true;
+                try { localStorage.setItem(KEY, '1'); } catch (e) {}
+                document.getElementById('gate-ask').classList.add('hidden');
+                document.getElementById('gate-done').classList.remove('hidden');
+            }
+
+            document.querySelectorAll('[data-gate]').forEach(function (a) {
+                if (!unlocked) {
+                    a.querySelector('span').textContent = 'Get the Word file (free)';
+                    var note = document.createElement('span');
+                    note.className = 'dl-note';
+                    note.textContent = 'Free with The Sidekick Brief';
+                    a.insertAdjacentElement('afterend', note);
+                }
+                a.addEventListener('click', function (e) {
+                    if (unlocked) return;
+                    e.preventDefault();
+                    open(a.getAttribute('data-gate'));
+                });
+            });
+            document.getElementById('gate-close').addEventListener('click', close);
+            gate.addEventListener('click', function (e) { if (e.target === gate) close(); });
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !gate.classList.contains('hidden')) close(); });
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var email = form.email.value.trim();
+                var hp = form.website.value;
+                err.classList.add('hidden');
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+                    err.textContent = 'Please enter a valid email address.'; err.classList.remove('hidden'); return;
+                }
+                submit.disabled = true; submit.querySelector('span').textContent = 'One moment…';
+                var capture = fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({ 'form-name': 'brief-gate', email: email, resource: current, website: hp }).toString()
+                }).then(function (r) { return r.ok; }).catch(function () { return false; });
+                var subscribe = fetch('/.netlify/functions/brief-subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email, resource: current, website: hp })
+                }).then(function (r) { return r.ok; }).catch(function () { return false; });
+                Promise.all([capture, subscribe]).then(function (res) {
+                    submit.disabled = false; submit.querySelector('span').textContent = 'Subscribe and download';
+                    if (res[0] || res[1]) { unlock(); }
+                    else { err.textContent = 'Something went wrong. Please try again, or email marc@impactsidekick.com.'; err.classList.remove('hidden'); }
+                });
+            });
+        })();
+    </script>
 
     <script>
         lucide.createIcons();
