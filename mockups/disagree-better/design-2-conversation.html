@@ -48,6 +48,7 @@ header nav a.give{background:var(--red);color:#fff;padding:12px 20px;border-radi
 .thread .msg:nth-child(1){animation-delay:.3s}.thread .msg:nth-child(2){animation-delay:1.5s}.thread .msg:nth-child(3){animation-delay:2.9s}.thread .msg:nth-child(4){animation-delay:3.9s}.thread .coda{animation-delay:5s}
 .coda{text-align:center;font-style:italic;color:var(--muted);font-size:16px;margin-top:8px;opacity:0;animation:pop .6s ease forwards}
 @keyframes pop{to{opacity:1;transform:none}}
+.thread{transition:opacity .4s ease}.thread.out{opacity:0}
 @media (prefers-reduced-motion:reduce){.thread .msg,.coda{animation:none;opacity:1;transform:none}}
 .strip{background:var(--ink);color:#fff;padding:56px 0}
 .strip .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
@@ -212,6 +213,26 @@ function giveCard(root){let freq='monthly',i=1,custom='';const q=s=>root.querySe
 document.querySelectorAll('.give-card').forEach(giveCard);
 function route(){const v=location.hash==='#donate'?'donate':'home';document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='view-'+v));document.querySelectorAll('[data-link]').forEach(a=>{if(a.dataset.link===v)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});window.scrollTo(0,0)}
 addEventListener('hashchange',route);route();
+const CONVOS=[
+ [['Dana','Honestly, I think the new school levy asks too much of families like mine.'],['Marcus','I see it differently. My kids have 34 students per class. Can I tell you why I voted yes?'],['','Okay. I’m listening.'],['','Thanks. And I want to hear what it would cost you, too.']],
+ [['Rosa','That apartment complex is going to wreck traffic on our street.'],['Ben','My daughter can’t afford to live in the town she grew up in. Can I tell you why I’m for it?'],['','Fair. Go ahead.'],['','Then tell me what worries you most. I’d rather fix that than fight about it.']],
+ [['Uncle Ray','Raising the minimum wage will close half the shops on Main Street.'],['Mia','I worked two of those jobs in college and still came up short. Can we compare notes?'],['','Sure. I ran a hardware store for twenty years.'],['','Then you know things I don’t. Start there.']],
+ [['Kevin','Those wind turbines are an eyesore, and folks here never got a say.'],['Alicia','The lease money kept my parents’ farm going. Want to hear how it worked for them?'],['','Alright, I’ll hear you out.'],['','And I want to know who wasn’t asked. That part bothers me too.']],
+ [['Grace','Banning phones at school feels like overkill to me.'],['Luis','I teach eighth grade. Can I tell you what a normal Tuesday looks like?'],['','Please. I’ve only seen it from the parent side.'],['','Deal. Then tell me what you worry about when you can’t reach your kid.']],
+ [['Tanya','I think our town should send some police money to mental health calls.'],['Greg','My brother’s a deputy. He’d say they’re already stretched thin.'],['','I’d honestly like to hear what he sees on those calls.'],['','I’ll ask him to join us. Coffee’s on me.']]
+];
+(function(){
+ const th=document.querySelector('.thread');if(!th)return;
+ const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+ const html=c=>c.map(([who,txt],i)=>{const s=i%2?'r':'l';return '<div class="msg">'+(who?'<p class="who'+(s==='r'?' r':'')+'">'+esc(who)+'</p>':'')+'<p class="b '+s+'" style="margin:0">'+esc(txt)+'</p></div>'}).join('')+'<p class="coda">That’s what disagreeing better sounds like.</p>';
+ function fitHeight(){th.style.minHeight='';const keep=th.innerHTML;let h=0;CONVOS.forEach(c=>{th.innerHTML=html(c);h=Math.max(h,th.offsetHeight)});th.innerHTML=keep;th.style.minHeight=h+'px'}
+ let cur=-1;
+ function pick(){let n;do{n=Math.floor(Math.random()*CONVOS.length)}while(n===cur&&CONVOS.length>1);cur=n;th.innerHTML=html(CONVOS[n])}
+ fitHeight();pick();addEventListener('resize',fitHeight);document.fonts.ready.then(fitHeight);
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ // one convo plays in ~5.6s; hold, fade out, start the next
+ setInterval(()=>{th.classList.add('out');setTimeout(()=>{pick();th.classList.remove('out')},450)},11000);
+})();
 </script>
 </body>
 </html>
