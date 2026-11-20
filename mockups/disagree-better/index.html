@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Disagree Better — Site audit and design directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Literata:opsz,wght@7..72,600;7..72,700&display=swap">
+<style>
+:root{--ink:#1A2433;--muted:#4C5869;--line:#D9DFE7;--wash:#F3F6FA;--red:#D3163A;--blue:#1A5FA3;--good:#1F7A4D;--warn:#A85B00;--bad:#C0162F}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font:17px/1.6 "Atkinson Hyperlegible",system-ui,sans-serif;color:var(--ink);background:#fff}
+a{color:var(--blue);text-underline-offset:2px}
+a:focus-visible,button:focus-visible{outline:3px solid #00AEEF;outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+header.top{border-bottom:6px solid transparent;border-image:linear-gradient(90deg,var(--blue) 50%,var(--red) 50%) 1}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:22px;padding-bottom:22px;flex-wrap:wrap}
+.top img{height:38px}
+.top p{margin:0;color:var(--muted);font-size:15px}
+h1,h2,h3{font-family:Literata,Georgia,serif;line-height:1.15;margin:0}
+h1{font-size:clamp(32px,4.4vw,48px);margin-top:48px;max-width:20ch}
+h2{font-size:clamp(24px,3vw,32px);margin:64px 0 8px}
+.designs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:20px}
+.designs a{display:block;padding:18px 20px;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:var(--ink)}
+.designs a:hover{border-color:var(--blue);background:var(--wash)}
+.designs strong{display:block;font-family:Literata,Georgia,serif;font-size:20px;color:var(--blue)}
+.designs span{display:block;margin-top:4px;font-size:15px;color:var(--muted)}
+
+h3{font-size:20px;margin:36px 0 10px}
+.lead{font-size:20px;max-width:62ch;margin:20px 0 0}
+.lead + p{max-width:62ch}
+.meta{color:var(--muted);font-size:15px;margin-top:14px}
+nav.toc{margin:36px 0 0;padding:18px 22px;background:var(--wash);border-radius:12px;display:flex;flex-wrap:wrap;gap:8px 24px;font-size:15px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:28px}
+.card{border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.card strong{display:block;font-family:Literata,Georgia,serif;font-size:34px;line-height:1.1}
+.card span{color:var(--muted);font-size:15px}
+.tablebox{overflow-x:auto;margin-top:20px;border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:720px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
+th{background:var(--wash);font-weight:700}
+tr:last-child td{border-bottom:0}
+td.rank{font-family:Literata,Georgia,serif;font-size:22px;font-weight:700;color:var(--blue);width:44px}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:13px;font-weight:700;white-space:nowrap}
+.s{background:#E2F3EA;color:var(--good)}.m{background:#FFF1DC;color:var(--warn)}.l{background:#FCE4E8;color:var(--bad)}
+ol.talk{padding-left:0;list-style:none;counter-reset:t;display:grid;gap:14px;margin-top:20px}
+ol.talk li{counter-increment:t;position:relative;padding:18px 20px 18px 64px;background:var(--wash);border-radius:12px}
+ol.talk li::before{content:counter(t);position:absolute;left:20px;top:16px;font:700 26px/1 Literata,Georgia,serif;color:var(--red)}
+ol.talk em{display:block;margin-top:6px;color:var(--muted)}
+.bars{display:grid;gap:10px;margin-top:20px}
+.bar{display:grid;grid-template-columns:150px 1fr 40px;align-items:center;gap:12px;font-size:15px}
+.track{height:14px;background:var(--wash);border-radius:7px;overflow:hidden}
+.fill{height:100%;border-radius:7px}
+.bar b{text-align:right}
+.note{font-size:14px;color:var(--muted);margin-top:10px}
+ul.src{font-size:15px;columns:2 320px;padding-left:18px}
+footer{margin:80px 0 0;padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+@media (max-width:600px){.bar{grid-template-columns:110px 1fr 34px}}
+@media print{nav.toc{display:none}h2{break-after:avoid}.tablebox{border:0;overflow:visible}table{min-width:0;font-size:12px}body{font-size:13px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4gPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJMYXllcl8xIiB2aWV3Qm94PSIwIDAgMjc0LjMzIDc1LjE1Ij48ZGVmcz48c3R5bGU+IC5jbHMtMSB7IGZpbGw6ICMyNDFmMjA7IH0gLmNscy0yIHsgZmlsbDogI2ZmMDAyYTsgfSAuY2xzLTMgeyBmaWxsOiAjMDBiZGZiOyB9IDwvc3R5bGU+PC9kZWZzPjxnPjxnPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTk0LjE5LDQuNjFoMTMuNGM1LjYxLDAsOS45OSwxLjMzLDEzLjE0LDQsMy4xNCwyLjY3LDQuNzEsNi40LDQuNzEsMTEuMiwwLDMuMTEtLjczLDUuODUtMi4yLDguMjQtMS40NywyLjM4LTMuNSw0LjI2LTYuMDksNS42MnMtNS41OSwyLjA0LTguOTgsMi4wNGgtMTMuOThsLS4xNi0yLjIyLDMuMjgtLjc0Yy4xMS0uMzIuMTktMS4yMy4yNC0yLjczLjA1LTEuNS4wOC0zLjI0LjA4LTUuMjJ2LTkuMjJjMC0yLjE1LS4wMy0zLjk2LS4wOC01LjQzLS4wNS0xLjQ2LS4xMy0yLjMyLS4yNC0yLjU3bC0zLjI4LS43NC4xNi0yLjIyWk0xMDMuMDksNy42OGMwLC4yOCwwLC43Mi0uMDMsMS4zMi0uMDIuNi0uMDQsMS40Mi0uMDUsMi40Ni0uMDIsMS4wNC0uMDMsMi40MS0uMDMsNC4xMXY5LjIyYzAsMS4wMiwwLDIuMDEuMDMsMi45Ny4wMi45NS4wNSwxLjgyLjExLDIuNi4wNS43OC4xLDEuNDEuMTMsMS45MSwxLjAyLjE0LDEuOTcuMjYsMi44My4zNC44Ni4wOSwxLjcuMTMsMi41Mi4xMywzLjUsMCw2LjE1LS45NSw3Ljk3LTIuODZzMi43My00Ljc1LDIuNzMtOC41M2MwLTIuMzMtLjI4LTQuMzgtLjg1LTYuMTUtLjU3LTEuNzYtMS4zOS0zLjIzLTIuNDYtNC40LTEuMDgtMS4xNy0yLjM3LTIuMDQtMy44Ny0yLjYyLTEuNS0uNTgtMy4yLS44Ny01LjExLS44Ny0uNiwwLTEuMjMuMDMtMS44OC4wOC0uNjUuMDUtMS4zMy4xNS0yLjA0LjI5WiI+PC9wYXRoPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTEyOC40NCwzNS43bC0uMTYtMi4xMiwzLjU1LS43OWMuMDMtLjE0LjA3LS40Mi4xMS0uODJzLjA3LS45OS4xMS0xLjc1LjA1LTEuNzQuMDUtMi45NHYtMy43NmMwLTEuMjctLjA0LTIuNDUtLjExLTMuNTItLjA3LTEuMDgtLjE4LTEuOTktLjMyLTIuNzNsLTMuNTUtLjc0di0xLjk2bDguMjYtMi4xMiwxLjAxLjg1Yy0uMTEsMS4wOS0uMTksMi4xOC0uMjQsMy4yNi0uMDUsMS4wOC0uMDgsMi4zMi0uMDgsMy43M3Y2LjY3YzAsMS40OC4wMywyLjc1LjA4LDMuODEuMDUsMS4wNi4xMSwxLjczLjE5LDIuMDFsMy41NS43OS0uMTEsMi4xMmgtMTIuMzRaTTEzNC42NCw2Ljk5Yy0xLjA2LDAtMS45My0uMzQtMi42Mi0xLjAzLS42OS0uNjktMS4wMy0xLjUxLTEuMDMtMi40NnMuMzQtMS43NywxLjAzLTIuNDZjLjY5LS42OSwxLjU2LTEuMDMsMi42Mi0xLjAzczEuOTIuMzQsMi41NywxLjAzYy42NS42OS45OCwxLjUxLjk4LDIuNDZzLS4zMywxLjc4LS45OCwyLjQ2Yy0uNjUuNjktMS41MSwxLjAzLTIuNTcsMS4wM1oiPjwvcGF0aD48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xNTEuMDksMzYuMTNjLTEuMzQsMC0yLjY5LS4xNS00LjA1LS40NS0xLjM2LS4zLTIuNTItLjcxLTMuNDctMS4yNWwtLjI2LTUuODNoMi44NmwxLjExLDMuODFjMS4yNC44MSwyLjYzLDEuMjIsNC4xOCwxLjIyLDEuMTcsMCwyLjA5LS4yNiwyLjc4LS43OS42OS0uNTMsMS4wMy0xLjI1LDEuMDMtMi4xN3MtLjMzLTEuNjUtLjk4LTIuM2MtLjY1LS42NS0xLjk1LTEuMzctMy44OS0yLjE1LTIuNTQtMS4wMi00LjMzLTIuMDctNS4zNS0zLjEyLTEuMDItMS4wNi0xLjU0LTIuNC0xLjU0LTQuMDMsMC0xLjMxLjQxLTIuNDYsMS4yMi0zLjQ3LjgxLTEuMDEsMS45Mi0xLjgsMy4zNC0yLjM4LDEuNDEtLjU4LDMuMDUtLjg3LDQuOTMtLjg3LDEuMDIsMCwyLjA3LjEsMy4xMy4yOXMxLjk0LjQ1LDIuNjUuNzdsLjU4LDUuNjdoLTIuNzVsLTEuMjItMy42NmMtLjM1LS4yMS0uNzgtLjM4LTEuMjctLjUtLjUtLjEyLTEuMDEtLjE5LTEuNTQtLjE5LTEuMiwwLTIuMTYuMjgtMi44OS44NS0uNzIuNTctMS4wOSwxLjI3LTEuMDksMi4xMiwwLC45OS40MSwxLjc5LDEuMjIsMi40MS44MS42MiwyLjI0LDEuMzksNC4yOSwyLjMsMi4zMywxLjAyLDMuOTYsMi4wNiw0LjksMy4xLjk0LDEuMDQsMS40LDIuMzIsMS40LDMuODQsMCwyLjAxLS44NywzLjY1LTIuNjIsNC45LTEuNzUsMS4yNS0zLjk4LDEuODgtNi43LDEuODhaIj48L3BhdGg+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTcxLjMsMzYuMTNjLTEuNDgsMC0yLjc5LS4zMS0zLjkyLS45My0xLjEzLS42Mi0yLTEuMzktMi42LTIuMy0uNi0uOTItLjktMS44NC0uOS0yLjc1LDAtMS4yLjM5LTIuMjEsMS4xNy0zLjAyLjc4LS44MSwyLjAzLTEuNDgsMy43Ni0yLjAxbDguMTYtMi42NXYtMi40NGMwLS44NS0uMjYtMS42Mi0uNzctMi4zLS41MS0uNjktMS4xOS0xLjI1LTIuMDQtMS42N3MtMS43OC0uNjQtMi44MS0uNjRjLS44MSwwLTEuMzYuMTctMS42NC41LS4yOC4zNC0uNDYsMS0uNTMsMS45OWwtLjE2LDIuNTRjLTEuNDEuMzItMi42LjI3LTMuNTgtLjEzLS45Ny0uNDEtMS40Ni0xLjA5LTEuNDYtMi4wNCwwLS42LjI5LTEuMjIuODctMS44NS41OC0uNjQsMS4zMi0xLjI0LDIuMjItMS44LjktLjU2LDEuODYtMS4wNSwyLjg5LTEuNDYsMS4wMi0uNDEsMS45OS0uNjgsMi45MS0uODIsMi43OSwwLDUuMDEuNyw2LjY1LDIuMDksMS42NCwxLjQsMi40OCwzLjI0LDIuNTIsNS41NGwtLjExLDguNDJjMCwuNzQuMDMsMS40Mi4wOCwyLjA0LjA1LjYyLjEzLDEuMDkuMjQsMS40bDMuNDQuNjR2MS44NWwtMi44NiwxLjExYy0uNTMuMjEtMS4wMi4zOC0xLjQ4LjUtLjQ2LjEyLS44Ny4xOS0xLjIyLjE5LTEuMTcsMC0xLjk2LS42NC0yLjM4LTEuOTFsLS42OS0yLjIyLjkuMTFjLTEuMTMsMS4zMS0yLjI0LDIuMy0zLjM0LDIuOTlzLTIuMjEsMS4wMy0zLjM0LDEuMDNaTTE3My4xNSwzMi40N2MuNzEsMCwxLjM4LS4xNiwyLjAxLS40OC42NC0uMzIsMS4yNC0uNzksMS44LTEuNDN2LTUuNDZsLTUuMTksMS4yN2MtLjg1LjIxLTEuNDYuNTQtMS44My45OC0uMzcuNDQtLjU2LDEuMDEtLjU2LDEuNzIsMCwuODguMzcsMS42NywxLjExLDIuMzYuNzQuNjksMS42MiwxLjAzLDIuNjUsMS4wM1oiPjwvcGF0aD48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0xOTcuMTEsNDcuNzhjLTMuMzksMC02LjA3LS41My04LjAzLTEuNTlzLTIuOTQtMi40Ny0yLjk0LTQuMjRjMC0xLjIuNTItMi4zLDEuNTYtMy4zMSwxLjA0LTEuMDEsMi42Mi0xLjk3LDQuNzQtMi44OWwyLjEyLjM3Yy0xLjA2LjY0LTEuODksMS4zOS0yLjQ5LDIuMjUtLjYuODctLjksMS43OS0uOSwyLjc4LDAsMS4zMS41NiwyLjMzLDEuNjcsMy4wNywxLjExLjc0LDIuNjQsMS4xMSw0LjU4LDEuMTEsMi4xOSwwLDMuOTctLjQ3LDUuMzUtMS40LDEuMzgtLjk0LDIuMDctMi4xMywyLjA3LTMuNTgsMC0xLjEtLjQxLTEuOTItMS4yMi0yLjQ2LS44MS0uNTUtMi4xNS0uODktNC4wMy0xLjAzbC01LjkzLS40OC0uNjktLjI2Yy0xLjQ1LDAtMi42NC0uMzQtMy41OC0xLjAxLS45NC0uNjctMS40LTEuNTQtMS40LTIuNiwwLS45OS40OS0xLjk1LDEuNDgtMi44OS45OS0uOTQsMi4zMy0xLjc0LDQuMDMtMi40MWwuNzQsMS4wMWMtLjU3LjM5LTEsLjc2LTEuMywxLjExLS4zLjM1LS40NS43MS0uNDUsMS4wNiwwLC40Ni4xOS44NC41OCwxLjE0LjM5LjMuOTMuNDksMS42NC41Nmw3LjIuNzRjMi41MS4yNSw0LjQxLjg5LDUuNywxLjkzLDEuMjksMS4wNCwxLjkzLDIuNDgsMS45Myw0LjMyLDAsMS42Mi0uNTUsMy4xLTEuNjQsNC40MnMtMi41OCwyLjM3LTQuNDUsMy4xMmMtMS44Ny43Ni0zLjk5LDEuMTQtNi4zNiwxLjE0Wk0xOTcuNDgsMjkuMjRjLTEuOTQsMC0zLjY2LS4zNC01LjE3LTEuMDMtMS41LS42OS0yLjY3LTEuNjQtMy41Mi0yLjg2LS44NS0xLjIyLTEuMjctMi42LTEuMjctNC4xNiwwLTEuNy40NC0zLjIxLDEuMzItNC41M3MyLjA4LTIuMzgsMy42LTMuMTVjMS41Mi0uNzgsMy4yMS0xLjE3LDUuMDgtMS4xN3MzLjU0LjM3LDUuMDEsMS4xMWMxLjQ2Ljc0LDIuNjIsMS43NiwzLjQ3LDMuMDUuODUsMS4yOSwxLjI3LDIuNzMsMS4yNyw0LjMycy0uNDIsMy4wMy0xLjI3LDQuMzJjLS44NSwxLjI5LTIuMDEsMi4zLTMuNSwzLjAyLTEuNDguNzItMy4xNiwxLjA5LTUuMDMsMS4wOVpNMTk3LjgsMjYuOGMxLjM0LDAsMi40LS41MSwzLjE4LTEuNTQuNzgtMS4wMiwxLjE3LTIuNCwxLjE3LTQuMTMsMC0xLjk0LS40Mi0zLjUtMS4yNy00LjY2LS44NS0xLjE3LTEuOTgtMS43NS0zLjM5LTEuNzVzLTIuNDMuNTUtMy4yNiwxLjY0Yy0uODMsMS4wOS0xLjI1LDIuNTQtMS4yNSw0LjM0cy40NCwzLjI3LDEuMzIsNC40Yy44OCwxLjEzLDIuMDUsMS43LDMuNSwxLjdaTTIxMC40MSwxNi41M2wtNi42Mi0uNTMtMi4wMS0yLjIyLDguNjMtLjl2My42NloiPjwvcGF0aD48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yMTIuMzUsMzUuN2wtLjE2LTIuMDcsMy4yOC0uODVjLjA0LS4xNC4wNy0uNDQuMTEtLjkuMDMtLjQ2LjA3LTEuMDguMTEtMS44NS4wNC0uNzguMDUtMS43LjA1LTIuNzVsLjA1LTQuMDhjMC0xLjE3LS4wNC0yLjI2LS4xMy0zLjI4LS4wOS0xLjAyLS4yLTEuOTEtLjM0LTIuNjVsLTMuMzktLjc0di0xLjk2bDcuNzktMi4xMi45NS43OS0uMjEsNC4zNC4xNi4wNWMxLjAyLTIuMDEsMi4wNy0zLjM3LDMuMTUtNC4wOCwxLjA4LS43MSwyLjEzLTEuMDYsMy4xNS0xLjA2Ljg1LDAsMS41Ny4yMiwyLjE3LjY2LjYuNDQuOSwxLjEyLjksMi4wNHMtLjMyLDEuNjItLjk1LDIuMTJjLS42NC41LTEuNDMuNzQtMi4zOC43NC0uNzEsMC0xLjM2LS4xNC0xLjk2LS40Mi0uNi0uMjgtMS4yLS43MS0xLjgtMS4yN2wxLjA2LjI2Yy0uNi40Mi0xLjE4Ljk5LTEuNzUsMS43LS41Ny43MS0xLjA4LDEuNTctMS41NCwyLjZsLjA1LDQuNjZjLjA0LDEuMDMuMDcsMi4wMi4xMSwyLjk5LjA0Ljk3LjA3LDEuODMuMTEsMi41N3MuMDcsMS4yOS4xMSwxLjY0bDQuNjEuNzQtLjE2LDIuMTdoLTEzLjE0WiI+PC9wYXRoPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTI0MS44OCwzNi4xM2MtMi4xMiwwLTQuMDMtLjQ4LTUuNzItMS40My0xLjctLjk1LTMuMDMtMi4yOS00LTQuMDNzLTEuNDYtMy43NC0xLjQ2LTYuMDRjMC0yLjQ3LjUzLTQuNjMsMS41OS02LjQ5czIuNDQtMy4yOSw0LjEzLTQuMzJjMS43LTEuMDIsMy41My0xLjUyLDUuNTEtMS40OCwyLjg5LjA0LDUuMTMuOTgsNi43LDIuODMsMS41NywxLjg1LDIuMzYsNC4zNywyLjM2LDcuNTV2MS4wNmgtMTUuOTR2LTIuNDloMTEuOTdsLS42OS45di0xLjMyYzAtMS45MS0uNDMtMy40LTEuMy00LjQ4LS44Ny0xLjA4LTIuMDQtMS42Mi0zLjUyLTEuNjItLjk1LDAtMS44Ni4yOC0yLjczLjg1LS44Ny41Ny0xLjU1LDEuNDEtMi4wNywyLjU0LS41MSwxLjEzLS43NywyLjU0LS43Nyw0LjI0di43OWMwLDIuNzUuNyw0LjkzLDIuMDksNi41MiwxLjM5LDEuNTksMy4yMiwyLjM4LDUuNDgsMi4zOCwxLjI0LDAsMi4zNC0uMjQsMy4zMS0uNzEuOTctLjQ4LDEuOTMtMS4yNiwyLjg5LTIuMzZsMS40MywxLjMyYy0uOTksMS45NC0yLjI5LDMuMzktMy44OSw0LjM0LTEuNjEuOTUtMy40LDEuNDMtNS4zOCwxLjQzWiI+PC9wYXRoPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTI2NS4wNiwzNi4xM2MtMi4xMiwwLTQuMDMtLjQ4LTUuNzItMS40My0xLjctLjk1LTMuMDMtMi4yOS00LTQuMDNzLTEuNDYtMy43NC0xLjQ2LTYuMDRjMC0yLjQ3LjUzLTQuNjMsMS41OS02LjQ5czIuNDQtMy4yOSw0LjEzLTQuMzJjMS43LTEuMDIsMy41My0xLjUyLDUuNTEtMS40OCwyLjg5LjA0LDUuMTMuOTgsNi43LDIuODMsMS41NywxLjg1LDIuMzYsNC4zNywyLjM2LDcuNTV2MS4wNmgtMTUuOTR2LTIuNDloMTEuOTdsLS42OS45di0xLjMyYzAtMS45MS0uNDMtMy40LTEuMy00LjQ4LS44Ny0xLjA4LTIuMDQtMS42Mi0zLjUyLTEuNjItLjk1LDAtMS44Ni4yOC0yLjczLjg1LS44Ny41Ny0xLjU1LDEuNDEtMi4wNywyLjU0LS41MSwxLjEzLS43NywyLjU0LS43Nyw0LjI0di43OWMwLDIuNzUuNyw0LjkzLDIuMDksNi41MiwxLjM5LDEuNTksMy4yMiwyLjM4LDUuNDgsMi4zOCwxLjI0LDAsMi4zNC0uMjQsMy4zMS0uNzEuOTctLjQ4LDEuOTMtMS4yNiwyLjg5LTIuMzZsMS40MywxLjMyYy0uOTksMS45NC0yLjI5LDMuMzktMy44OSw0LjM0LTEuNjEuOTUtMy40LDEuNDMtNS4zOCwxLjQzWiI+PC9wYXRoPjwvZz48Zz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik05Ny4zMiw3MS43NmMuMDctLjI4LjE0LTEuMTUuMjEtMi42LjA3LTEuNDUuMTEtMy4yMy4xMS01LjM1di05LjIyYzAtMi4yOS0uMDQtNC4xNy0uMTEtNS42Mi0uMDctMS40NS0uMTQtMi4yOC0uMjEtMi40OWwtMy4yOC0uNjQuMTEtMi4yMmgxMy4zNWMzLjU3LDAsNi4yNS42Myw4LjA1LDEuOTEsMS44LDEuMjcsMi43LDMuMTMsMi43LDUuNTYsMCwxLjk0LS43OSwzLjU4LTIuMzYsNC45My0xLjU3LDEuMzQtMy42MywyLjEtNi4xNywyLjI4bC0uMzItLjQyYzMuMzUuMTQsNS45My44OSw3LjczLDIuMjUsMS44LDEuMzYsMi43LDMuMjIsMi43LDUuNTksMCwyLjc5LTEuMTksNC45OS0zLjU4LDYuNi0yLjM4LDEuNjEtNS42NiwyLjQxLTkuODMsMi40MWgtMTIuMjlsLS4xMS0yLjIyLDMuMjgtLjc0Wk0xMDIuOTMsNjUuMzVjMCwxLjUyLjAyLDIuODcuMDUsNC4wNS4wMywxLjE4LjA3LDEuOTUuMTEsMi4zLjQyLjA3LDEsLjE1LDEuNzIuMjQuNzIuMDksMS4zMy4xMywxLjgzLjEzLDIuNDcsMCw0LjMzLS40OSw1LjU5LTEuNDYsMS4yNS0uOTcsMS44OC0yLjQxLDEuODgtNC4zMiwwLTIuMDUtLjY3LTMuNTgtMi4wMS00LjU4LTEuMzQtMS4wMS0zLjM2LTEuNTEtNi4wNC0xLjUxaC0yLjM4Yy0uNSwwLS45NS4wNC0xLjM4LjExdi0yLjk3Yy42LjA0LDEuMTcuMDYsMS43LjA4LjUzLjAyLDEuMTMuMDMsMS44LjAzLDIuMTUsMCwzLjgxLS41LDQuOTgtMS41MSwxLjE3LTEuMDEsMS43NS0yLjQzLDEuNzUtNC4yNnMtLjU1LTMuMTMtMS42NC00LjA4Yy0xLjA5LS45NS0yLjctMS40My00LjgyLTEuNDNoLTMuMDJjLS4wNC4yNS0uMDYsMS4wMi0uMDgsMi4zLS4wMiwxLjI5LS4wMywyLjc2LS4wMyw0LjQydjEyLjQ1WiI+PC9wYXRoPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTEzNC4zNyw3NS4xNWMtMi4xMiwwLTQuMDMtLjQ4LTUuNzItMS40My0xLjctLjk1LTMuMDMtMi4yOS00LTQuMDMtLjk3LTEuNzMtMS40Ni0zLjc0LTEuNDYtNi4wNCwwLTIuNDcuNTMtNC42MywxLjU5LTYuNDlzMi40NC0zLjI5LDQuMTMtNC4zMmMxLjctMS4wMiwzLjUzLTEuNTIsNS41MS0xLjQ4LDIuOS4wNCw1LjEzLjk4LDYuNywyLjgzLDEuNTcsMS44NSwyLjM2LDQuMzcsMi4zNiw3LjU1djEuMDZoLTE1Ljk0di0yLjQ5aDExLjk3bC0uNjkuOXYtMS4zMmMwLTEuOTEtLjQzLTMuNC0xLjMtNC40OC0uODctMS4wOC0yLjA0LTEuNjItMy41Mi0xLjYyLS45NSwwLTEuODYuMjgtMi43My44NS0uODcuNTctMS41NSwxLjQxLTIuMDcsMi41NC0uNTEsMS4xMy0uNzcsMi41NC0uNzcsNC4yNHYuNzljMCwyLjc1LjcsNC45MywyLjA5LDYuNTIsMS40LDEuNTksMy4yMiwyLjM4LDUuNDgsMi4zOCwxLjI0LDAsMi4zNC0uMjQsMy4zMS0uNzEuOTctLjQ4LDEuOTMtMS4yNiwyLjg5LTIuMzZsMS40MywxLjMyYy0uOTksMS45NC0yLjI5LDMuMzktMy44OSw0LjM0LTEuNjEuOTUtMy40LDEuNDMtNS4zOCwxLjQzWiI+PC9wYXRoPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE2My4wMSw3MS4wN2MtLjY0LDEuMjctMS41NywyLjI3LTIuODEsMi45OS0xLjI0LjcyLTIuNTYsMS4wOS0zLjk3LDEuMDktMi4yMiwwLTQuMDYtLjY2LTUuNTEtMS45OS0xLjQ1LTEuMzItMi4xNy0zLjM1LTIuMTctNi4wN2wuMTYtMTIuNGgtMy43MXYtMS4yN2w3LjQ3LTYuNTJoMS4yN2wtLjExLDYuNTItLjA1LDEyLjkyYzAsMS43LjM4LDIuOTUsMS4xNCwzLjc2Ljc2LjgxLDEuODQsMS4yMiwzLjI2LDEuMjIuNzQsMCwxLjQ2LS4xNSwyLjE1LS40NS42OS0uMywxLjMtLjcsMS44My0xLjE5bDEuMDYsMS4zOFpNMTUxLjM1LDU0Ljd2LTIuODZoMTAuMTJ2Mi44NmgtMTAuMTJaIj48L3BhdGg+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTgwLjM2LDcxLjA3Yy0uNjQsMS4yNy0xLjU3LDIuMjctMi44MSwyLjk5LTEuMjQuNzItMi41NiwxLjA5LTMuOTcsMS4wOS0yLjIyLDAtNC4wNi0uNjYtNS41MS0xLjk5LTEuNDUtMS4zMi0yLjE3LTMuMzUtMi4xNy02LjA3bC4xNi0xMi40aC0zLjcxdi0xLjI3bDcuNDctNi41MmgxLjI3bC0uMTEsNi41Mi0uMDUsMTIuOTJjMCwxLjcuMzgsMi45NSwxLjE0LDMuNzYuNzYuODEsMS44NCwxLjIyLDMuMjYsMS4yMi43NCwwLDEuNDYtLjE1LDIuMTUtLjQ1LjY5LS4zLDEuMy0uNywxLjgzLTEuMTlsMS4wNiwxLjM4Wk0xNjguNyw1NC43di0yLjg2aDEwLjEydjIuODZoLTEwLjEyWiI+PC9wYXRoPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTE5MS44Myw3NS4xNWMtMi4xMiwwLTQuMDMtLjQ4LTUuNzItMS40My0xLjctLjk1LTMuMDMtMi4yOS00LTQuMDNzLTEuNDYtMy43NC0xLjQ2LTYuMDRjMC0yLjQ3LjUzLTQuNjMsMS41OS02LjQ5czIuNDQtMy4yOSw0LjEzLTQuMzJjMS43LTEuMDIsMy41My0xLjUyLDUuNTEtMS40OCwyLjg5LjA0LDUuMTMuOTgsNi43LDIuODMsMS41NywxLjg1LDIuMzYsNC4zNywyLjM2LDcuNTV2MS4wNmgtMTUuOTR2LTIuNDloMTEuOTdsLS42OS45di0xLjMyYzAtMS45MS0uNDMtMy40LTEuMy00LjQ4LS44Ny0xLjA4LTIuMDQtMS42Mi0zLjUyLTEuNjItLjk1LDAtMS44Ni4yOC0yLjczLjg1LS44Ny41Ny0xLjU1LDEuNDEtMi4wNywyLjU0LS41MSwxLjEzLS43NywyLjU0LS43Nyw0LjI0di43OWMwLDIuNzUuNyw0LjkzLDIuMDksNi41MiwxLjM5LDEuNTksMy4yMiwyLjM4LDUuNDgsMi4zOCwxLjI0LDAsMi4zNC0uMjQsMy4zMS0uNzEuOTctLjQ4LDEuOTMtMS4yNiwyLjg5LTIuMzZsMS40MywxLjMyYy0uOTksMS45NC0yLjI5LDMuMzktMy44OSw0LjM0LTEuNjEuOTUtMy40LDEuNDMtNS4zOCwxLjQzWiI+PC9wYXRoPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTIwMy4xOSw3NC43MmwtLjE2LTIuMDcsMy4yOC0uODVjLjA0LS4xNC4wNy0uNDQuMTEtLjkuMDMtLjQ2LjA3LTEuMDguMTEtMS44NS4wNC0uNzguMDUtMS43LjA1LTIuNzVsLjA1LTQuMDhjMC0xLjE3LS4wNC0yLjI2LS4xMy0zLjI4LS4wOS0xLjAyLS4yLTEuOTEtLjM0LTIuNjVsLTMuMzktLjc0di0xLjk2bDcuNzktMi4xMi45NS43OS0uMjEsNC4zNC4xNi4wNWMxLjAyLTIuMDEsMi4wNy0zLjM3LDMuMTUtNC4wOCwxLjA4LS43MSwyLjEzLTEuMDYsMy4xNS0xLjA2Ljg1LDAsMS41Ny4yMiwyLjE3LjY2LjYuNDQuOSwxLjEyLjksMi4wNHMtLjMyLDEuNjItLjk1LDIuMTJjLS42NC41LTEuNDMuNzQtMi4zOC43NC0uNzEsMC0xLjM2LS4xNC0xLjk2LS40Mi0uNi0uMjgtMS4yLS43MS0xLjgtMS4yN2wxLjA2LjI2Yy0uNi40Mi0xLjE4Ljk5LTEuNzUsMS43LS41Ny43MS0xLjA4LDEuNTctMS41NCwyLjZsLjA1LDQuNjZjLjA0LDEuMDMuMDcsMi4wMi4xMSwyLjk5LjA0Ljk3LjA3LDEuODMuMTEsMi41N3MuMDcsMS4yOS4xMSwxLjY0bDQuNjEuNzQtLjE2LDIuMTdoLTEzLjE0WiI+PC9wYXRoPjwvZz48L2c+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNNzAuMjgsMzMuMDVjMy42OC0yLjgyLDYuMDYtNy4yNCw2LjA2LTEyLjI0di0uNzZjMC04LjUxLTYuOS0xNS40Mi0xNS40Mi0xNS40MmgtMjMuMzhjLS4zNCwwLS40Ni40NC0uMTguNjIsOS4zNSw1Ljk4LDE1LjE3LDE4LjYzLDEzLjEsMzAuOC0xLjk3LDExLjU4LTkuOCwyMS4zMy0yMC4yNiwyNi4wMi0uMzMuMTUtLjIzLjY1LjEzLjY1aDE0LjUzYzIuMzIsNi40Myw4Ljk3LDEzLjMzLDE5Ljk2LDExLjc3LTQuMDUtMi41Mi02LjgxLTYuOTgtNy4wNS0xMS43N2g0LjcyYzguMTUsMCwxNS4xNi02LjEsMTUuOTUtMTQuMjEuNjUtNi42NS0yLjgzLTEyLjU1LTguMTctMTUuNDZaIj48L3BhdGg+PHBhdGggY2xhc3M9ImNscy0zIiBkPSJNMTYuODEsNC42NEgwdjU4LjA5aDExLjM5Yy0uMjUsNC44LTMsOS4yNS03LjA1LDExLjc3LDExLjYxLDEuNjQsMTguMzgtNi4xNSwyMC4zMS0xMi44NSwxMi4yMy0zLjQyLDIxLjItMTQuNjQsMjEuMi0yNy45NmgwYzAtMTYuMDQtMTMtMjkuMDQtMjkuMDQtMjkuMDRaIj48L3BhdGg+PC9zdmc+IA==" alt="Disagree Better">
+  <p>Prepared for Disagree Better by Impact Sidekick</p>
+</div></header>
+
+<main class="wrap">
+  <h1>Disagree Better: five design directions and what's costing you donors</h1>
+  <p class="lead">You have about 44,000 social followers and no email signup anywhere on the site, and your donate page scores 31 out of 100 on mobile speed. Fixing those two carries the most money and reach.</p>
+  <p>Next comes free reach you aren't using: no page-one Google ranking for four searches that fit their mission (one peaks at Thanksgiving, Nov 26), no sign of Google Ad Grants, and an unrated Charity Navigator listing with no mission or website on file.</p>
+  <p class="meta">Checked read-only on November 20, 2026.</p>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#designs">Design directions</a><a href="#gaps">Top 10 gaps</a><a href="#speed">Page speed</a><a href="#a11y">Accessibility</a><a href="#crawl">Site crawl</a><a href="#search">Search</a><a href="#social">Social</a><a href="#peers">Peers</a><a href="#sources">Sources</a>
+  </nav>
+
+  <div class="cards" aria-label="Headline numbers">
+    <div class="card"><strong>0</strong><span>email signup forms across 31 pages</span></div>
+    <div class="card"><strong>~44K</strong><span>followers on Instagram, Facebook, LinkedIn and YouTube</span></div>
+    <div class="card"><strong>31</strong><span>donate page mobile speed score, out of 100</span></div>
+    <div class="card"><strong>0 of 4</strong><span>target searches where they reach Google's first page</span></div>
+  </div>
+
+  <h2 id="designs">Design directions</h2>
+  <p>Five redesigns of the homepage hero and donate page. Each opens on the homepage; use Donate in its header to see the donate page.</p>
+  <div class="designs">
+    <a href="/mockups/disagree-better/design-1-the-seam.html"><strong>1. The Seam</strong><span>Blue and red halves split by a line visitors can drag.</span></a>
+    <a href="/mockups/disagree-better/design-2-conversation.html"><strong>2. Conversation</strong><span>A respectful exchange in chat bubbles; donor questions answered as a thread.</span></a>
+    <a href="/mockups/disagree-better/design-3-poster.html"><strong>3. Poster</strong><span>Giant overlapping type; where blue meets red becomes the page's ink.</span></a>
+    <a href="/mockups/disagree-better/design-4-common-ground.html"><strong>4. Common Ground</strong><span>Dark and cinematic; the two halves slide together as you scroll.</span></a>
+    <a href="/mockups/disagree-better/design-5-bridge-builders.html"><strong>5. Bridge Builders</strong><span>Illustrated; a bridge fills in as the gift amount grows.</span></a>
+  </div>
+
+  <h2 id="gaps">Top 10 gaps, ranked by impact on donations and reach</h2>
+  <p>Effort: small is under a day, medium is a few days, large is an ongoing program.</p>
+  <div class="tablebox"><table>
+    <thead><tr><th scope="col">#</th><th scope="col">Gap</th><th scope="col">What we found</th><th scope="col">Fix</th><th scope="col">Effort</th></tr></thead>
+    <tbody>
+      <tr><td class="rank">1</td><td><strong>No email list capture</strong></td><td>No newsletter signup on any of the 31 pages in the sitemap. The only email fields are the "thank a champion" forms and a contact form. The free guide downloads with no email asked. Followers: Instagram 27.5K, Facebook 15K, LinkedIn 1.1K, YouTube 251.</td><td>A "Get the free guide" signup in the homepage hero and footer, a welcome series, a monthly giving ask.</td><td><span class="pill s">Small</span></td></tr>
+      <tr><td class="rank">2</td><td><strong>Donate page is very slow on phones</strong></td><td>Mobile Performance 31, Best Practices 54. Lab test: 16 MB page, 1.8 MB of unused JavaScript, main content shows at 57.8 s. Real Chrome visitors still pass Core Web Vitals, so slow phones take the hit.</td><td>Load the Zeffy form only when needed, compress images (535 KiB flagged), trim scripts.</td><td><span class="pill m">Medium</span></td></tr>
+      <tr><td class="rank">3</td><td><strong>Donate layout loses donors</strong></td><td>The form sits below a full-screen photo, one-time is the default, only $100 says what it funds, and there are no other ways to give.</td><td>Rebuild along the lines of the designs above: giving card above the fold, monthly by default, an impact line per amount, "Other ways to give".</td><td><span class="pill m">Medium</span></td></tr>
+      <tr><td class="rank">4</td><td><strong>Missing from searches that fit the mission</strong></td><td>Not on page one for "how to talk politics with family", "civil discourse curriculum", "how to disagree respectfully" or "depolarization nonprofit".</td><td>One page per search built from their guides, starting with a Thanksgiving-table page.</td><td><span class="pill l">Large</span></td></tr>
+      <tr><td class="rank">5</td><td><strong>Free Google search ads likely unused</strong></td><td>Seven ads point to the site, all video, mostly run by Commonsense American Foundation. No search ads, the usual sign of Ad Grants (up to $10,000 a month for eligible nonprofits).</td><td>Apply for Google Ad Grants and point ads at the guide and donate pages.</td><td><span class="pill m">Medium</span></td></tr>
+      <tr><td class="rank">6</td><td><strong>Accessibility errors</strong></td><td>WAVE homepage: 6 errors, 20 contrast errors, score 5.2 of 10. Donate page: 4 errors, 8 contrast errors. 217 images use the alt text "Image".</td><td>Fix empty links and contrast, write real alt text, respect reduced-motion settings.</td><td><span class="pill s">Small</span></td></tr>
+      <tr><td class="rank">7</td><td><strong>Weak giving profiles</strong></td><td>Charity Navigator shows "Not Rated" with no mission or website. A Candid profile exists; a Seal of Transparency isn't visible without signing in.</td><td>Claim and complete the free Candid profile, earn a Seal, add mission and URL.</td><td><span class="pill s">Small</span></td></tr>
+      <tr><td class="rank">8</td><td><strong>SEO housekeeping</strong></td><td>24 of 32 indexed pages lack a meta description. 9 pages have more than one H1 (donate has 5). Test pages and a duplicate are indexed, and the only blog post is WordPress's default "Hello world!"</td><td>Meta descriptions, one H1 per page, remove test pages and the default post from the index.</td><td><span class="pill s">Small</span></td></tr>
+      <tr><td class="rank">9</td><td><strong>Homepage and toolkit first impression</strong></td><td>Homepage mobile score 79; render-blocking files cost about 2 s; the hero video has no poster image. Toolkit mobile: 56, main content at 8.7 s, 899 KiB of image savings.</td><td>Add a poster image, compress toolkit images, set image sizes.</td><td><span class="pill s">Small</span></td></tr>
+      <tr><td class="rank">10</td><td><strong>Video reach doesn't feed the site</strong></td><td>YouTube: 116 videos, weekly uploads, 251 subscribers. Recent videos mostly get 80 to 260 views; one reached 33K.</td><td>End screens and descriptions that point to the guide signup; embed top clips on the site.</td><td><span class="pill s">Small</span></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2>Audit details</h2>
+
+  <h3 id="speed">Page speed (Google PageSpeed Insights, mobile Performance score)</h3>
+  <div class="bars" role="img" aria-label="Mobile performance scores: homepage 79, toolkit 56, donate 31, out of 100">
+    <div class="bar"><span>Homepage</span><div class="track"><div class="fill" style="width:79%;background:var(--warn)"></div></div><b>79</b></div>
+    <div class="bar"><span>Toolkit</span><div class="track"><div class="fill" style="width:56%;background:var(--warn)"></div></div><b>56</b></div>
+    <div class="bar"><span>Donate</span><div class="track"><div class="fill" style="width:31%;background:var(--bad)"></div></div><b>31</b></div>
+  </div>
+  <div class="tablebox"><table>
+    <thead><tr><th scope="col">Page</th><th scope="col">Device</th><th scope="col">Perf.</th><th scope="col">Access.</th><th scope="col">Best pr.</th><th scope="col">SEO</th><th scope="col">Main content shows</th><th scope="col">Top fixes flagged</th></tr></thead>
+    <tbody>
+      <tr><td>/donate/</td><td>Mobile</td><td>31</td><td>93</td><td>54</td><td>92</td><td>57.8 s</td><td>Unused JavaScript (1,835 KiB), cache lifetimes (1,587 KiB), images (535 KiB)</td></tr>
+      <tr><td>/donate/</td><td>Desktop</td><td>29</td><td>93</td><td>54</td><td>92</td><td>2.7 s</td><td>Images (477 KiB), blocking time 2,440 ms, layout shift 0.33</td></tr>
+      <tr><td>/</td><td>Mobile</td><td>79</td><td>93</td><td>96</td><td>100</td><td>2.6 s</td><td>Render-blocking files (2,000 ms), legacy JavaScript (41 KiB)</td></tr>
+      <tr><td>/</td><td>Desktop</td><td>78</td><td>93</td><td>96</td><td>100</td><td>1.7 s</td><td>Cache lifetimes (379 KiB), images (139 KiB)</td></tr>
+      <tr><td>/toolkit/</td><td>Mobile</td><td>56</td><td>88</td><td>96</td><td>100</td><td>8.7 s</td><td>Images (899 KiB), render-blocking (1,200 ms), layout shift 0.24</td></tr>
+      <tr><td>/toolkit/</td><td>Desktop</td><td>58</td><td>89</td><td>96</td><td>100</td><td>1.3 s</td><td>Layout shift 0.38, blocking time 460 ms</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Run at 2:48 PM MT. Lab scores shift a few points between runs. Real-visitor data (Chrome UX Report, last 28 days) passes Core Web Vitals on all three pages.</p>
+
+  <h3 id="a11y">Accessibility (WAVE)</h3>
+  <p>Homepage: 6 errors (all empty links), 20 very-low-contrast errors, 11 suspicious alt texts, 2 broken same-page links; score 5.2 of 10. Donate page: 4 errors, 8 contrast errors, 5 H1 headings; score 7.1 of 10.</p>
+
+  <h3 id="crawl">Site crawl (32 pages in the sitemap)</h3>
+  <p>No dead internal links (one Cloudflare email-protection link returns 404, which is normal). Meta descriptions on only 8 of 32 pages, none on the donate page. Nine pages have several H1s and one has none. The post sitemap last changed in July 2025 and holds only the default "Hello world!" post. 217 images carry the alt text "Image".</p>
+
+  <h3 id="search">Google search</h3>
+  <div class="tablebox"><table>
+    <thead><tr><th scope="col">Search</th><th scope="col">On page one?</th><th scope="col">Who ranks instead</th></tr></thead>
+    <tbody>
+      <tr><td>how to talk politics with family</td><td>No</td><td>CTRI, Reddit, MSU Today, UW Graduate School, UT Southwestern, Time</td></tr>
+      <tr><td>civil discourse curriculum</td><td>No</td><td>CASEL, APA, Learning for Justice, Reagan Foundation, Facing History, Close Up</td></tr>
+      <tr><td>how to disagree respectfully</td><td>No</td><td>Reddit, Pitt, Forbes, SkillPath, KidsHealth</td></tr>
+      <tr><td>depolarization nonprofit</td><td>No</td><td>Depolarization Institute, Braver Angels, Reasons to be Cheerful, NGA</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="social">Social and email</h3>
+  <div class="tablebox"><table>
+    <thead><tr><th scope="col">Channel</th><th scope="col">Followers</th><th scope="col">Activity</th></tr></thead>
+    <tbody>
+      <tr><td>Instagram</td><td>27.5K</td><td>181 posts</td></tr>
+      <tr><td>Facebook</td><td>15K</td><td>Not checked</td></tr>
+      <tr><td>LinkedIn</td><td>1.1K</td><td>Posts 4 days, 2 weeks and 3 weeks ago</td></tr>
+      <tr><td>YouTube</td><td>251 subscribers</td><td>116 videos, weekly uploads; recent views mostly 80 to 260, one at 33K</td></tr>
+      <tr><td>Email</td><td>No signup on the site</td><td>Mailchimp is installed</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3 id="peers">How peers handle giving and signup</h3>
+  <div class="tablebox"><table>
+    <thead><tr><th scope="col">Organization</th><th scope="col">Donate page</th><th scope="col">Email signup</th></tr></thead>
+    <tbody>
+      <tr><td>Braver Angels</td><td>Form at the top with 9 amounts from $12; $12 earns a one-year membership, $1,000+ a lifetime membership and President's Circle; gift and memorial option</td><td>Footer form with name, email and ZIP</td></tr>
+      <tr><td>Builders</td><td>Embedded Give Lively form; cites 4 million followers; EIN shown</td><td>"Be a Builder" form in the homepage hero and again at the bottom, asking for email and state</td></tr>
+      <tr><td>Millions of Conversations</td><td>ACH, wire and check-by-mail options with an address</td><td>Footer "Join Our Movement" signup</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="sources">Sources and method</h2>
+  <p>All checks were read-only in Chrome on November 20, 2026; nothing was submitted or signed up for. The free SEO tools named in the brief need accounts, so the crawl ran directly against the site's sitemap. Search results came from a signed-in browser and may be slightly personalized. Candid's seal status needs a Candid login to confirm.</p>
+  <ul class="src">
+    <li><a href="https://pagespeed.web.dev/analysis/https-disagreebetter-us/ylz8gxllst?form_factor=mobile">PageSpeed: homepage</a></li>
+    <li><a href="https://pagespeed.web.dev/analysis/https-disagreebetter-us-donate/kqs9yu5uq1?form_factor=mobile">PageSpeed: donate</a></li>
+    <li><a href="https://pagespeed.web.dev/analysis/https-disagreebetter-us-toolkit/7kfh42a0jw?form_factor=mobile">PageSpeed: toolkit</a></li>
+    <li><a href="https://wave.webaim.org/report#/https://disagreebetter.us/">WAVE: homepage</a></li>
+    <li><a href="https://wave.webaim.org/report#/https://disagreebetter.us/donate/">WAVE: donate</a></li>
+    <li><a href="https://disagreebetter.us/sitemap_index.xml">Disagree Better sitemap</a></li>
+    <li><a href="https://disagreebetter.us/our-story/">Disagree Better: Our Story</a></li>
+    <li><a href="https://disagreebetter.us/our-supporters/">Disagree Better: Our Supporters</a></li>
+    <li><a href="https://adstransparency.google.com/?region=anywhere&amp;domain=disagreebetter.us">Google Ads Transparency Center</a></li>
+    <li><a href="https://www.charitynavigator.org/ein/993641251">Charity Navigator profile</a></li>
+    <li><a href="https://www.guidestar.org/profile/99-3641251">Candid (GuideStar) profile</a></li>
+    <li><a href="https://www.instagram.com/disagreebetter/">Instagram</a></li>
+    <li><a href="https://www.facebook.com/people/Disagree-Better/61580626063556/">Facebook</a></li>
+    <li><a href="https://www.linkedin.com/company/disagreebetter/">LinkedIn</a></li>
+    <li><a href="https://www.youtube.com/@DisagreeBetterUS/videos">YouTube</a></li>
+    <li><a href="https://braverangels.org/donate/">Braver Angels donate page</a></li>
+    <li><a href="https://buildersmovement.org/">Builders homepage</a></li>
+    <li><a href="https://www.millionsofconversations.com/conversation-fund">Millions of Conversations giving page</a></li>
+  </ul>
+</main>
+<footer><div class="wrap">Impact Sidekick · Prepared November 20, 2026</div></footer>
+</body>
+</html>
