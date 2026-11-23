@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live Like Sam — AI and website audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a short, concrete working memo for a busy executive director.
+   IDEA: a week's to-do list, with the writing that can come off it.
+   PICTURE: the year's writing load as four big counts.
+   COLOUR and TYPE: Live Like Sam navy and sky blue with their gold handprint as accent; Literata titles, Atkinson body.
+   LAYOUT: single column, numbered sections, tables stack on phones. */
+:root{color-scheme:light dark;
+--bg:light-dark(#FFFFFF,#0E1620);--ink:light-dark(#132235,#E8EEF5);--muted:light-dark(#4F5D6E,#A7B4C3);
+--line:light-dark(#DCE3EA,#26354A);--wash:light-dark(#F1F6FB,#152234);--navy:light-dark(#0F2D52,#8EC5FF);--sky:light-dark(#1B8FD6,#5CB8F0);--gold:light-dark(#B86E00,#F4B23E)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Atkinson Hyperlegible",system-ui,sans-serif;overflow-x:clip}
+a{color:var(--sky);text-underline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 max(5vw,16px)}
+header.top{border-bottom:6px solid var(--navy)}
+header.top .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:18px;font-size:15px;color:var(--muted)}
+header.top b{color:var(--ink)}
+h1,h2,h3{font-family:Literata,Georgia,serif;line-height:1.1;margin:0;text-wrap:balance}
+h1{font-size:clamp(32px,4.4vw,46px);margin-top:44px;max-width:24ch}
+h2{font-size:clamp(24px,3vw,32px);margin:60px 0 14px}
+h3{font-size:20px;margin:26px 0 6px}
+.lede{font-size:clamp(18px,2vw,21px);max-width:64ch;margin:18px 0 0}
+.note{color:var(--muted);font-size:15px}
+.counts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:32px 0 0}
+.counts div{background:var(--wash);border-radius:8px;padding:18px}
+.counts b{display:block;font:700 clamp(30px,3.8vw,42px)/1 Literata,Georgia,serif;color:var(--navy)}
+.counts span{display:block;margin-top:8px;font-size:15px;color:var(--muted)}
+nav.toc{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:2;margin-top:30px}
+nav.toc .wrap{display:flex;gap:22px;overflow-x:auto;padding-block:12px;font-size:15px;white-space:nowrap}
+nav.toc a{flex:none;text-decoration:none;color:var(--ink)}
+.idea{border-top:1px solid var(--line);padding:22px 0}
+.idea h3{margin:0 0 8px;display:flex;gap:12px;align-items:baseline}
+.idea h3 i{font-style:normal;color:var(--gold);font-size:22px}
+.idea dl{display:grid;grid-template-columns:9em minmax(0,1fr);gap:6px 16px;margin:10px 0 0}
+.idea dt{font-weight:700;color:var(--muted);font-size:15px}
+.idea dd{margin:0}
+table{width:100%;border-collapse:collapse;font-size:15.5px;margin-top:10px}
+th,td{text-align:left;vertical-align:top;padding:12px 10px;border-bottom:1px solid var(--line)}
+th{font-size:14px;color:var(--muted);font-weight:700}
+td.n{font:700 18px Literata,Georgia,serif;color:var(--navy);width:2.2em}
+td.e{white-space:nowrap}
+.pill{display:inline-block;padding:1px 9px;border-radius:99px;font-size:13px;font-weight:700;background:var(--wash)}
+.scroll{overflow-x:auto}
+.good{background:var(--wash);padding:16px 20px;border-radius:6px;margin-top:16px}
+.rule{border-left:5px solid var(--gold);padding:12px 18px;margin:18px 0 0;background:var(--wash);border-radius:4px}
+ul.src{columns:2 280px;padding-left:18px;font-size:15px}
+footer{margin-top:72px;padding:28px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:15px}
+@media(max-width:760px){.counts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:7em;text-align:start;width:auto}.stack td::before{content:attr(data-l);float:inline-start;width:6.5em;margin-inline-start:-7em;font-weight:700;color:var(--muted);font-size:13px}.stack td:empty{display:none}.idea dl{grid-template-columns:1fr}.idea dt{margin-top:6px}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+<header class="top"><div class="wrap"><span><b>Impact Sidekick</b> · prepared for Ron Jackenthal, Live Like Sam</span><span>Based on livelikesam.org, checked read-only on November 23, 2026</span></div></header>
+
+<main>
+<div class="wrap">
+<h1>Live Like Sam: where AI can take writing off your team, and what to fix on the site</h1>
+<p class="lede">Your five-person staff posted about 95 event and volunteer listings, more than 20 Parent Corner and blog posts, and 12 monthly newsletters in the past year, while reporting to a 16-person board. Most of that writing follows a pattern, which makes it a good fit for AI drafts your staff review and send.</p>
+<p class="lede">On the site, the fastest win is today's: your homepage still says "Every gift through November 6 is matched," in two places, 17 days after the match ended. After that comes phone speed: the homepage loads 23.9 MB and scores 57 out of 100 on mobile.</p>
+
+<div class="counts">
+<div><b>~95</b><span>event and volunteer listings posted or updated in 2026</span></div>
+<div><b>20+</b><span>Parent Corner and blog posts this year</span></div>
+<div><b>12</b><span>monthly newsletters, Dec 2025 to Nov 2026</span></div>
+<div><b>16</b><span>board members to keep informed</span></div>
+</div>
+<p class="note">Counts come from your site's sitemap, newsletter archive and team page.</p>
+</div>
+
+<nav class="toc" aria-label="Sections"><div class="wrap">
+<a href="#ai">AI for routine writing</a><a href="#site">Website fixes</a><a href="#takes">What each takes</a><a href="#details">Details</a><a href="#sources">Sources</a>
+</div></nav>
+
+<div class="wrap">
+<h2 id="ai">Part 1. AI for your routine writing</h2>
+<p>Each of these produces a draft in your voice that a staff member reads, edits if needed and sends. Nothing goes out on its own, and none of it needs student or participant records.</p>
+
+<div class="rule"><b>How these are built:</b> a small tool connected only to what it needs (your donor system, your site's posts and events, or a meeting recording), trained on 5 to 10 examples of your past writing, delivering drafts to whoever owns that task.</div>
+
+<div class="idea"><h3><i>1</i>Donor thank-yous and tax receipts</h3>
+<p>Gifts reach you through the Neon CRM form on your donate page, Venmo, mailed checks and Live PC Give PC, and receipts today mean emailing Kim. Each new gift would produce a personal thank-you that names what the gift supports (Thrive, Same Inside, Sages &amp; Seekers) and includes your receipt language and EIN, ready for Kim or you to approve in one click. Year-end and match-campaign gifts would get their own versions.</p>
+<dl><dt>Uses</dt><dd>Read-only access to new gifts in Neon (or a daily export), plus a handful of your best past thank-you notes.</dd>
+<dt>Setup</dt><dd>About 1 to 2 weeks (our estimate), with one working session with Kim.</dd>
+<dt>Question for you</dt><dd>Your email signup runs on Little Green Light and your online donations on Neon. Which one is your donor record of truth?</dd></dl></div>
+
+<div class="idea"><h3><i>2</i>Board reports</h3>
+<p>A one-page board update drafted monthly or before each board meeting: gifts and totals against goals, program sessions and youth reached, events and volunteer turnout, and the decisions or asks coming up. With 16 board members, a consistent page saves the back-and-forth of individual updates.</p>
+<dl><dt>Uses</dt><dd>Neon gift totals, your program sign-up counts and your events calendar. We agree on the 8 to 10 numbers that matter.</dd>
+<dt>Setup</dt><dd>About 2 weeks (our estimate). After that, a draft lands a few days before each meeting.</dd></dl></div>
+
+<div class="idea"><h3><i>3</i>Meeting write-ups</h3>
+<p>Staff, board and committee meetings (including gala planning) recorded in Zoom or Google Meet turn into a short summary: decisions, who owns what, and due dates. It's emailed to attendees the same day, and follow-up reminders go out on those dates.</p>
+<dl><dt>Uses</dt><dd>The meeting recording or transcript you already get from Zoom or Meet.</dd>
+<dt>Setup</dt><dd>A few days (our estimate).</dd></dl></div>
+
+<div class="idea"><h3><i>4</i>The monthly newsletter, drafted for you</h3>
+<p>Your newsletter archive shows a steady monthly issue. A first draft would assemble itself from that month's Parent Corner posts, upcoming events, open volunteer spots and program news, in your format, ready for edits and scheduling.</p>
+<dl><dt>Uses</dt><dd>Your blog and events pages, plus three past issues as the template.</dd>
+<dt>Setup</dt><dd>About 1 week (our estimate).</dd></dl></div>
+
+<div class="idea"><h3><i>5</i>Event and volunteer listings</h3>
+<p>Roughly 95 listings this year, each with a description, venue, time and a volunteer ask. A short form (what, where, when, how many volunteers) would produce the website listing, a social post and a reminder email to signed-up volunteers.</p>
+<dl><dt>Uses</dt><dd>Your existing events calendar on WordPress.</dd>
+<dt>Setup</dt><dd>About 1 week (our estimate).</dd></dl></div>
+
+<h2 id="site">Part 2. Website fixes, ranked by impact on giving and reach</h2>
+<p class="note">Effort: small is under a day, medium is a few days, large is an ongoing program.</p>
+<div class="scroll"><table class="stack">
+<thead><tr><th>#</th><th>Gap</th><th>What we found</th><th>Fix</th><th>Effort</th></tr></thead>
+<tbody>
+<tr><td class="n">1</td><td><b>Expired match still on the homepage</b></td><td>"Every gift through November 6 is matched dollar for dollar, up to $25,000" appears in the Same Inside banner and the Donate card. Today is November 23.</td><td>Swap both for your year-end ask so the homepage is right through December.</td><td class="e"><span class="pill">Small</span></td></tr>
+<tr><td class="n">2</td><td><b>Very slow on phones</b></td><td>Homepage mobile Performance 57. The page loads 23,904 KiB, with 19,667 KiB of image savings flagged; in Google's lab test the main image took 94.1 s on a slow phone connection.</td><td>Compress and resize the homepage images (most of the weight), lazy-load the partner logos, trim unused scripts.</td><td class="e"><span class="pill">Medium</span></td></tr>
+<tr><td class="n">3</td><td><b>Donate page buries the online form</b></td><td>Venmo and check come first; "Donate Online" (the Neon form) is last. Mobile Performance 42, first content at 13.3 s, Best Practices 73. The page has no H1.</td><td>Put the online form at the top, then Venmo and check below. Load the form faster and give the page a proper heading.</td><td class="e"><span class="pill">Small</span></td></tr>
+<tr><td class="n">4</td><td><b>Year-end pages are out of date</b></td><td>/year-end-giving/ was last updated November 2023. The Live PC Give PC page shows 2025 content under a browser title that says 2022.</td><td>Refresh the year-end page for 2026 and point the homepage at it until December 31.</td><td class="e"><span class="pill">Small</span></td></tr>
+<tr><td class="n">5</td><td><b>Email signup is a click away</b></td><td>The homepage and footer say "Get timely news straight to your inbox" with a Join Us button. The actual signup form is on a separate /join/ page.</td><td>Put the email field itself in the footer and on the homepage, so one step becomes zero.</td><td class="e"><span class="pill">Small</span></td></tr>
+<tr><td class="n">6</td><td><b>Accessibility errors</b></td><td>WAVE on the homepage: 15 errors, 20 contrast errors, AIM score 5.5 of 10. 7 homepage images have no alt text.</td><td>Alt text, stronger contrast on light text over photos, labels on icon-only links.</td><td class="e"><span class="pill">Small</span></td></tr>
+<tr><td class="n">7</td><td><b>Clutter in Google's index</b></td><td>The sitemap lists 494 URLs, including 82 venue pages, 12 "Live Like Sam" organizer pages, 5 events with number-only addresses and a "__trashed-4" post.</td><td>Hide venue and organizer pages from search, remove the trashed post, fix the numbered event addresses.</td><td class="e"><span class="pill">Small</span></td></tr>
+<tr><td class="n">8</td><td><b>Free Google search ads unused</b></td><td>Google's Ads Transparency Center shows no ads pointing to livelikesam.org, so Google Ad Grants (free search ads for eligible nonprofits) appear unused.</td><td>Apply for Ad Grants and point ads at Thrive sign-ups, Parent Corner and the donate page.</td><td class="e"><span class="pill">Medium</span></td></tr>
+</tbody></table></div>
+
+<div class="good"><b>What's already working:</b> Charity Navigator rates you a Four-Star Charity (94%). You're on page one of Google for "youth mental health Park City" (#2), "teen mental health programs Summit County Utah" (#2) and "youth mental health nonprofit Heber Utah" (#1). And you publish more steadily than most organizations your size.</div>
+
+<h2 id="takes">What each would take</h2>
+<p class="note">Setup times are our estimates. "From you" is what we'd need from your team.</p>
+<div class="scroll"><table class="stack">
+<thead><tr><th>Item</th><th>Setup</th><th>From you</th></tr></thead>
+<tbody>
+<tr><td>Homepage match banner</td><td>Under an hour</td><td>The year-end message you want</td></tr>
+<tr><td>Donor thank-yous and receipts</td><td>1 to 2 weeks</td><td>Neon read access, 5 to 10 past thank-yous, one session with Kim</td></tr>
+<tr><td>Board report</td><td>About 2 weeks</td><td>Agreement on the numbers, last two board updates</td></tr>
+<tr><td>Meeting write-ups</td><td>A few days</td><td>Which meetings, and Zoom or Meet access</td></tr>
+<tr><td>Newsletter draft</td><td>About 1 week</td><td>Three past issues, who approves</td></tr>
+<tr><td>Event and volunteer listings</td><td>About 1 week</td><td>WordPress editor access</td></tr>
+<tr><td>Phone speed and donate page</td><td>A few days</td><td>WordPress access</td></tr>
+<tr><td>Signup, accessibility, index cleanup</td><td>1 to 2 days</td><td>WordPress access</td></tr>
+<tr><td>Google Ad Grants</td><td>A few days, then ongoing</td><td>Google for Nonprofits sign-in</td></tr>
+</tbody></table></div>
+
+<h2 id="details">Details</h2>
+<h3>Page speed (Google PageSpeed Insights, mobile)</h3>
+<div class="scroll"><table class="stack"><thead><tr><th>Page</th><th>Perf.</th><th>Access.</th><th>Best pr.</th><th>SEO</th><th>First content</th><th>Main content</th></tr></thead><tbody>
+<tr><td>Homepage</td><td>57</td><td>86</td><td>100</td><td>92</td><td>3.4 s</td><td>94.1 s</td></tr>
+<tr><td>/donate/</td><td>42</td><td>86</td><td>73</td><td>100</td><td>13.3 s</td><td>28.7 s</td></tr>
+</tbody></table></div>
+<p class="note">Run at 8:48 AM MT on a simulated mid-range phone over slow 4G. Lab scores shift between runs.</p>
+<h3>Giving and email tools seen on the site</h3>
+<p>Online donations: Neon CRM form on /donate/. Homepage "Give Now" buttons: livepcgivepc.org. Email signup: Little Green Light form on /join/. Venmo @LiveLikeSam and checks by mail are also offered.</p>
+<h3>Public profiles</h3>
+<p>Charity Navigator: Four-Star Charity, 94%, profile managed by the nonprofit. ProPublica (2024 Form 990): revenue $633,463, 99.3% from contributions. Facebook: 2K followers.</p>
+
+<h2 id="sources">Sources and method</h2>
+<p class="note">All checks were read-only in Chrome on November 23, 2026. Nothing was submitted or signed up for. Search results came from a signed-in browser and may be slightly personalized.</p>
+<ul class="src">
+<li><a href="https://livelikesam.org/">livelikesam.org homepage</a></li>
+<li><a href="https://livelikesam.org/donate/">Donate page</a></li>
+<li><a href="https://livelikesam.org/join/">Join (email signup) page</a></li>
+<li><a href="https://livelikesam.org/about/team/">Team and board page</a></li>
+<li><a href="https://livelikesam.org/live-like-sam-newsletter-archives/">Newsletter archive</a></li>
+<li><a href="https://livelikesam.org/live-pc-give-pc/">Live PC Give PC page</a></li>
+<li><a href="https://livelikesam.org/sitemap_index.xml">Site sitemap</a></li>
+<li><a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Flivelikesam.org%2F&form_factor=mobile">PageSpeed Insights: homepage</a></li>
+<li><a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Flivelikesam.org%2Fdonate%2F&form_factor=mobile">PageSpeed Insights: donate</a></li>
+<li><a href="https://wave.webaim.org/report#/https://livelikesam.org/">WAVE: homepage</a></li>
+<li><a href="https://adstransparency.google.com/?region=anywhere&domain=livelikesam.org">Google Ads Transparency Center</a></li>
+<li><a href="https://www.charitynavigator.org/ein/852202987">Charity Navigator profile</a></li>
+<li><a href="https://projects.propublica.org/nonprofits/organizations/852202987">ProPublica Nonprofit Explorer</a></li>
+<li><a href="https://www.facebook.com/livelikesam.org/">Facebook page</a></li>
+</ul>
+</div>
+</main>
+<footer><div class="wrap">Prepared by Impact Sidekick · impactsidekick.com · marc@impactsidekick.com</div></footer>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbor Fund · Direction 5: Patron Memo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Patron Memo: the fund written like an investor memo for philanthropists. Numbers first, a capital-flow diagram, the slate as a portfolio table. */
+:root{--ink:#13161C;--paper:#FFFFFF;--wash:#F4F5F7;--rule:#D9DCE1;--mute:#5B6270;--acc:#D9480F}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 Onest,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}img{display:block;max-width:100%}
+.wrap{max-width:1160px;margin:0 auto;padding:0 max(4vw,18px)}
+.serif{font-family:Newsreader,Georgia,serif}
+:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+header.bar{border-bottom:1px solid var(--rule);position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);z-index:10}
+header.bar .wrap{display:flex;align-items:center;gap:22px;height:66px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.18em}
+nav.main{display:flex;gap:22px;margin-left:auto;font-size:15px;color:#333}
+nav.main a{text-decoration:none}nav.main a:hover{color:var(--acc)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:8px;background:var(--ink);color:#fff;font:600 15px Onest,sans-serif;text-decoration:none;border:0;cursor:pointer}
+.btn:hover{background:var(--acc)}
+.btn.sec{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.btn.sec:hover{background:var(--wash)}
+.memo{padding:clamp(40px,6vw,72px) 0 30px}
+.memo .head{display:grid;grid-template-columns:90px 1fr;gap:6px 14px;font-size:15px;border-bottom:2px solid var(--ink);padding-bottom:16px;max-width:620px}
+.memo .head b{color:var(--mute);font-weight:500}
+.memo h1{font:400 clamp(46px,7vw,92px)/1 Newsreader,Georgia,serif;margin:28px 0 18px;letter-spacing:-.01em;max-width:14ch}
+.memo h1 em{color:var(--acc)}
+.memo p.sum{font-size:clamp(18px,1.9vw,22px);max-width:60ch;margin:0 0 26px;color:#2b2f37}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.top{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,56px);align-items:start}
+.photo{border-radius:10px;overflow:hidden;aspect-ratio:4/5;background:#ddd url(img/hero-conch.jpg) 45% center/cover;position:relative}
+.photo figcaption{position:absolute;left:0;right:0;bottom:0;padding:12px 14px;color:#fff;font-size:13.5px;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--rule);margin-top:40px}
+.kpis div{padding:22px 18px 20px 0}
+.kpis b{display:block;font:600 clamp(38px,4.6vw,56px)/1 Newsreader,serif}
+.kpis span{color:var(--mute);font-size:15px}
+.goal{margin:22px 0 6px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;font-size:15px}
+.bar-o{height:12px;background:var(--wash);border-radius:99px;overflow:hidden}
+.bar-i{height:100%;width:15%;background:var(--acc);border-radius:99px}
+.src{font-size:13px;color:var(--mute)}
+section{padding:clamp(56px,8vw,96px) 0;border-top:1px solid var(--rule)}
+.sh{display:grid;grid-template-columns:200px 1fr;gap:28px}
+.sh .no{font-size:14px;color:var(--mute);padding-top:12px;border-top:3px solid var(--acc)}
+h2{font:400 clamp(34px,4.4vw,54px)/1.05 Newsreader,serif;margin:0 0 14px;text-wrap:balance}
+.lead{font-size:clamp(17px,1.7vw,20px);color:#2b2f37;max-width:62ch;margin:0}
+.flow{margin-top:34px;background:var(--wash);border-radius:12px;padding:22px}
+.flow .fig{position:relative;min-height:300px}
+.flow svg{position:absolute;inset:0;width:100%;height:100%}
+.flow-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:18px}
+.flow-steps b{display:block}
+.flow-steps p{margin:4px 0 0;font-size:15px;color:#3a3f49}
+table{width:100%;border-collapse:collapse;margin-top:28px;font-size:16px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--rule);vertical-align:middle}
+th{font-size:13.5px;color:var(--mute);font-weight:600}
+td.t{display:flex;gap:14px;align-items:center;font:600 20px Newsreader,serif}
+td.t i{flex:none;width:84px;aspect-ratio:16/10;border-radius:4px;background:#ddd center/cover}
+.tag{display:inline-block;font-size:13px;font-weight:600;padding:2px 10px;border-radius:99px;background:var(--wash)}
+.app{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:30px}
+.app article{border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.app .ph{aspect-ratio:16/10;background:#ddd center/cover}
+.app .tx{padding:16px}
+.app time{font-size:14px;color:var(--acc);font-weight:600}
+.app h3{font:600 22px/1.2 Newsreader,serif;margin:4px 0}
+.app p{margin:0;font-size:15px;color:#3a3f49}
+.cov{margin-top:26px;border-top:1px solid var(--rule)}
+.cov a{display:grid;grid-template-columns:140px 1fr 150px;gap:20px;padding:18px 0;border-bottom:1px solid var(--rule);text-decoration:none;align-items:baseline}
+.cov b{font:600 22px Newsreader,serif}
+.cov h3{margin:0;font:400 22px/1.3 Newsreader,serif}
+.cov a:hover h3{color:var(--acc)}
+.cov span{color:var(--mute);font-size:14.5px;text-align:right}
+.mgmt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:26px}
+.mgmt div{background:var(--wash);border-radius:10px;padding:16px}
+.mgmt b{display:block;font:600 20px Newsreader,serif}
+.mgmt span{font-size:14.5px;color:var(--mute)}
+.advs{columns:3 220px;margin-top:24px;column-gap:28px}
+.advs span{display:block;padding:7px 0;border-bottom:1px solid var(--rule);break-inside:avoid}
+.thesis{background:var(--ink);color:#fff;border:0}
+.thesis blockquote{margin:0;font:400 clamp(36px,5.6vw,72px)/1.08 Newsreader,serif;max-width:20ch}
+.thesis cite{display:block;margin-top:16px;font-style:normal;color:#AEB4BF}
+footer{background:var(--wash)}
+footer .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:30px;padding-block:52px}
+footer h4{margin:0 0 10px;font-size:13.5px;color:var(--mute);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.signup{display:flex;gap:8px;margin-top:12px;max-width:420px}
+.signup input{flex:1;min-height:46px;border-radius:8px;border:1px solid var(--rule);padding:0 14px;font:16px Onest,sans-serif}
+.legal{border-top:1px solid var(--rule);padding:16px 0;font-size:13.5px;color:var(--mute)}
+/* Patron page */
+.loi{padding:clamp(40px,6vw,72px) 0}
+.loi .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,64px);align-items:start}
+.loi h1{font:400 clamp(44px,6.4vw,84px)/1 Newsreader,serif;margin:24px 0 16px}
+.sheet{border:1px solid var(--rule);border-radius:12px;padding:30px;box-shadow:0 12px 40px rgba(19,22,28,.08)}
+label{display:block;font-weight:600;margin:16px 0 6px;font-size:15px}
+input[type=text],input[type=email],textarea{width:100%;min-height:48px;padding:10px 14px;border:1px solid #C4C9D1;border-radius:8px;font:16px Onest,sans-serif}
+textarea{min-height:100px}
+.opts{display:grid;gap:8px}
+.opt{display:grid;grid-template-columns:24px 1fr;gap:10px;padding:12px 14px;border:1px solid #C4C9D1;border-radius:8px;cursor:pointer;margin:0;font-weight:400}
+.opt input{width:20px;height:20px;accent-color:var(--acc);margin-top:2px}
+.opt b{display:block}
+.opt:has(input:checked){border-color:var(--acc);background:#FFF4EF}
+.form-err{color:#B42318;font-weight:600;min-height:1.4em;margin:10px 0 0}
+.demo{font-size:13px;color:var(--mute);margin:10px 0 0}
+.terms{border-top:2px solid var(--ink);margin-top:24px}
+.terms div{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:15.5px}
+.terms b{color:var(--mute);font-weight:500}
+.faq details{border-bottom:1px solid var(--rule);padding:14px 0}
+.faq summary{cursor:pointer;font:600 19px Newsreader,serif}
+@media(max-width:960px){nav.main{display:none}.top,.loi .grid{grid-template-columns:1fr}.photo{aspect-ratio:16/10}.sh{grid-template-columns:1fr;gap:10px}.flow-steps,.mgmt{grid-template-columns:repeat(2,minmax(0,1fr))}.app{grid-template-columns:1fr}footer .wrap{grid-template-columns:1fr}.cov a{grid-template-columns:110px 1fr}.cov span{display:none}}
+@media(max-width:600px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.flow-steps,.mgmt{grid-template-columns:1fr}.brand span{display:none}.hide-s{display:none}td.t i{width:60px}.cov a{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="brand" href="#top" aria-label="Harbor Fund home"><span id="mk"></span><span>HARBOR</span></a>
+<nav class="main" aria-label="Main"><a href="#slate">Portfolio</a><a href="#forum">Film Forum</a><a href="#how">How it works</a><a href="#people">About</a><a href="#contact">Contact</a></nav>
+<a class="btn" href="#patron" data-nav="patron">Become a patron</a>
+</div></header>
+
+<main data-view="home" id="top">
+<div class="memo"><div class="wrap top">
+<div>
+<div class="head"><b>To</b><span>Philanthropists who believe in film</span><b>From</b><span>Harbor Fund, Salt Lake City</span><b>Re</b><span>Films that matter</span></div>
+<h1>Philanthropic capital, <em>invested</em> in stories that shape culture.</h1>
+<p class="sum">Harbor is a nonprofit, venture-style film fund. Patrons give grants; we invest them in film and television for the public good; returns flow back into an evergreen fund for the next film.</p>
+<div class="ctas"><a class="btn" href="#patron">Become a patron</a><a class="btn sec" href="#contact">Pitch a project</a></div>
+</div>
+<figure class="photo" style="margin:0" role="img" aria-label="A performer at a Harbor gathering"></figure>
+</div>
+<div class="wrap">
+<div class="kpis" id="proof"></div>
+<div class="goal"><span>$15M raised</span><div class="bar-o" role="img" aria-label="15 percent of the $100 million goal"><div class="bar-i"></div></div><span>$100M goal</span></div>
+<p class="src" id="proofnote"></p>
+</div></div>
+
+<section id="how"><div class="wrap">
+<div class="sh"><span class="no">How the fund works</span><div><h2>Every dollar is meant to come back and work again.</h2><p class="lead" id="goal"></p></div></div>
+<div class="flow"><div class="fig"><svg id="flow" role="img" aria-label="Patrons give grants to the Harbor Fund, which invests in productions; returns flow back to the fund"></svg></div>
+<div class="flow-steps" id="steps"></div></div>
+</div></section>
+
+<section id="slate"><div class="wrap">
+<div class="sh"><span class="no">Portfolio</span><div><h2>Selected projects on the slate.</h2><p class="lead">From documentaries to studio releases. Full slate on request.</p></div></div>
+<table><thead><tr><th>Project</th><th>Type</th><th class="hide-s">Notes</th></tr></thead><tbody id="films"></tbody></table>
+</div></section>
+
+<section id="forum"><div class="wrap">
+<div class="sh"><span class="no">Harbor Film Forum</span><div><h2>Where patrons see the pitches first.</h2><p class="lead">Invitation-only days where filmmakers present to a curated group of philanthropists.</p></div></div>
+<div class="app" id="forums"></div>
+<p style="margin-top:26px"><a class="btn" href="#patron">Request an invitation</a></p>
+</div></section>
+
+<section id="press"><div class="wrap">
+<div class="sh"><span class="no">Coverage</span><div><h2>In the press.</h2></div></div>
+<div class="cov" id="pressList"></div>
+</div></section>
+
+<section id="people"><div class="wrap">
+<div class="sh"><span class="no">Management and advisors</span><div><h2>A lean team, a deep bench.</h2></div></div>
+<div class="mgmt" id="team"></div>
+<div class="advs" id="adv"></div>
+</div></section>
+
+<section class="thesis"><div class="wrap"><p style="color:#AEB4BF;margin:0 0 14px;font-size:14px">Our thesis, in one line</p><blockquote id="q"></blockquote><cite id="qa"></cite></div></section>
+</main>
+
+<main data-view="patron" hidden>
+<div class="loi"><div class="wrap grid">
+<div>
+<div class="head" style="display:grid;grid-template-columns:90px 1fr;gap:6px 14px;font-size:15px;border-bottom:2px solid var(--ink);padding-bottom:16px;max-width:520px"><b style="color:var(--mute);font-weight:500">To</b><span>The Harbor team</span><b style="color:var(--mute);font-weight:500">Re</b><span>Becoming a patron</span></div>
+<h1>A letter of interest, in under a minute.</h1>
+<p class="lead">Patrons give grants to the fund, preview the slate and meet filmmakers at the Forum. Tell us what interests you, and our team will follow up personally.</p>
+<div class="terms" id="why"></div>
+<div class="faq" id="faq" style="margin-top:26px"></div>
+</div>
+<div class="sheet" data-patron-form>
+<form novalidate>
+<label for="n">Your name</label><input id="n" name="name" type="text" autocomplete="name">
+<label for="e">Email</label><input id="e" name="email" type="email" autocomplete="email">
+<label id="il">I’m interested in</label>
+<div class="opts" role="radiogroup" aria-labelledby="il" id="opts"></div>
+<label for="m">Anything you’d like us to know (optional)</label><textarea id="m" name="msg"></textarea>
+<p class="form-err" aria-live="polite"></p>
+<button class="btn" type="submit" style="width:100%">Send to the Harbor team</button>
+<p class="demo">Mock-up: this form doesn’t send anything yet.</p>
+</form>
+<div class="form-ok" hidden tabindex="-1"><h2>Thank you, <span data-first></span>.</h2><p>Someone from the Harbor team will reach out personally within a few days.</p><a class="btn sec" href="#top">Back to the homepage</a></div>
+</div>
+</div></div>
+</main>
+
+<footer id="contact"><div class="wrap">
+<div><a class="brand" href="#top"><span id="mk2"></span>HARBOR</a><p style="color:var(--mute);margin:12px 0 0">Heal. Inspire. Transform.</p>
+<h4 style="margin-top:24px">Slate updates</h4><p style="margin:0;font-size:15px">A few emails a year on new films and Forums.</p>
+<form class="signup" onsubmit="event.preventDefault();this.innerHTML='<p style=&quot;margin:0&quot;>You’re on the list.</p>'"><input type="email" placeholder="Email address" aria-label="Email address" required><button class="btn" type="submit">Join</button></form></div>
+<div><h4>Three doors</h4><ul><li><a href="#patron">Patrons</a></li><li><a href="#contact">Filmmakers: pitch a project</a></li><li><a href="#press">Press</a></li></ul></div>
+<div><h4>Visit</h4><p style="margin:0" id="addr"></p><ul style="margin-top:14px" id="soc"></ul></div>
+</div><div class="wrap legal">© <span data-year></span> Harbor Fund. All rights reserved.</div></footer>
+
+<script src="shared.js"></script>
+<script>
+{
+const $=id=>document.getElementById(id);
+$('mk').innerHTML=HF.mark('#13161C','#fff');$('mk2').innerHTML=HF.mark('#13161C','#F4F5F7');
+$('proof').innerHTML=HF.proof.map(p=>`<div><b>${p.n}</b><span>${p.l}</span></div>`).join('');
+$('proofnote').textContent=HF.proofNote+' '+HF.goal;
+$('goal').textContent='Grants go into mission-aligned productions through equity and debt. Proceeds return to an evergreen fund and back the next film, in perpetuity.';
+$('steps').innerHTML=HF.steps.map(s=>`<div><b>${s.t}</b><p>${s.d}</p></div>`).join('');
+$('films').innerHTML=HF.films.map(f=>`<tr><td class="t"><i style="background-image:url(img/film-${f.slug}.jpg)" role="img" aria-label="${f.t} key art"></i>${f.t}</td><td><span class="tag">${f.k}</span></td><td class="hide-s">${f.d}</td></tr>`).join('');
+$('forums').innerHTML=HF.forums.map(f=>`<article><div class="ph" style="background-image:url(img/${f.img}.jpg)" role="img" aria-label="${f.p}"></div><div class="tx"><time>${f.y}</time><h3>${f.p}</h3><p>${f.d}</p></div></article>`).join('');
+$('pressList').innerHTML=HF.press.map(p=>`<a href="${p.u}"><b>${p.o}</b><div><h3>${p.h}</h3>${p.q?`<p style="margin:6px 0 0;color:#3a3f49">${p.q}</p>`:''}</div><span>${p.d}</span></a>`).join('');
+$('team').innerHTML=HF.team.map(t=>`<div><b>${t.n}</b><span>${t.r}</span></div>`).join('');
+$('adv').innerHTML='<span style="font-weight:600;color:var(--mute)">Advisory board</span>'+HF.advisors.map(a=>`<span>${a}</span>`).join('');
+$('q').textContent='“'+HF.quote.q+'”';$('qa').textContent='— '+HF.quote.a;
+$('why').innerHTML=HF.steps.map(s=>`<div><b>${s.t}</b><span>${s.d}</span></div>`).join('');
+$('faq').innerHTML=HF.faq.map(f=>`<details><summary>${f.q}</summary><p>${f.a}</p></details>`).join('');
+$('opts').innerHTML=HF.interests.map((o,i)=>`<label class="opt"><input type="radio" name="interest" value="${o.v}"${i?'':' checked'}><span><b>${o.t}</b>${o.d}</span></label>`).join('');
+$('addr').innerHTML=HF.address.join('<br>');
+$('soc').innerHTML=HF.social.map(s=>`<li><a href="${s.u}">${s.n}</a></li>`).join('');
+/* Capital-flow diagram, drawn at real size */
+const s=$('flow');
+const draw=()=>{const W=s.clientWidth,H=s.clientHeight;if(!W)return;const sm=W<560;
+const bx=(x,y,w,h,t,sub,fill,col)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="10" fill="${fill}"/><text x="${x+w/2}" y="${y+h/2-(sub?6:-6)}" text-anchor="middle" font-family="Newsreader,serif" font-size="${sm?16:20}" font-weight="600" fill="${col}">${t}</text>${sub?`<text x="${x+w/2}" y="${y+h/2+16}" text-anchor="middle" font-family="Onest,sans-serif" font-size="${sm?11:13}" fill="${col}" opacity=".8">${sub}</text>`:''}`;
+const w=sm?W*.28:W*.22,h=74,y=H/2-h/2-20,x1=8,x2=W/2-w/2,x3=W-w-8;
+s.innerHTML=`<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#13161C"/></marker><marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#D9480F"/></marker></defs>
+${bx(x1,y,w,h,'Patrons','grants','#fff','#13161C')}${bx(x2,y,w,h,'Harbor Fund','evergreen','#13161C','#fff')}${bx(x3,y,w,h,'Productions','equity and debt','#fff','#13161C')}
+<line x1="${x1+w+4}" y1="${y+h/2}" x2="${x2-6}" y2="${y+h/2}" stroke="#13161C" stroke-width="2.5" marker-end="url(#a)"/>
+<line x1="${x2+w+4}" y1="${y+h/2}" x2="${x3-6}" y2="${y+h/2}" stroke="#13161C" stroke-width="2.5" marker-end="url(#a)"/>
+<path d="M${x3+w/2} ${y+h+6} C ${x3+w/2} ${H-14}, ${x2+w/2} ${H-14}, ${x2+w/2} ${y+h+8}" fill="none" stroke="#D9480F" stroke-width="2.5" marker-end="url(#b)"/>
+<text x="${(x2+x3+w)/2}" y="${H-10}" text-anchor="middle" font-family="Onest,sans-serif" font-size="${sm?12:14}" fill="#D9480F" font-weight="600">returns recycled into the next film</text>`;};
+const ro=new ResizeObserver(draw);ro.observe(s);
+HF.boot();
+}
+</script>
+</body>
+</html>
