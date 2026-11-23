@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbor Fund — Site audit, homepage outline and five design directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a studio's audit memo — calm, specific, every number sourced.
+   IDEA: a film slate / call sheet — scenes numbered down the page.
+   PICTURE: the four headline figures as a slate strip.
+   COLOUR and TYPE: deep harbor teal, warm paper, one coral accent; Literata titles, Atkinson body.
+   LAYOUT: single column up to 1080px, wide tables scroll on phones. */
+:root{color-scheme:light dark;
+--bg:light-dark(#FBFAF7,#10181B);--ink:light-dark(#14262B,#E9EEEF);--muted:light-dark(#4D5F64,#A9B7BA);
+--line:light-dark(#D8DEDE,#2A3A3F);--wash:light-dark(#EEF3F2,#172327);--sea:light-dark(#0F3B46,#7FC3D0);--coral:light-dark(#C2410C,#FF9A6B)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Atkinson Hyperlegible",system-ui,sans-serif;overflow-x:clip}
+a{color:var(--sea);text-underline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 max(5vw,16px)}
+header.top{border-bottom:6px solid var(--sea)}
+header.top .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:18px;font-size:15px;color:var(--muted)}
+header.top b{color:var(--ink)}
+h1,h2,h3{font-family:Literata,Georgia,serif;line-height:1.1;margin:0;text-wrap:balance}
+h1{font-size:clamp(32px,4.4vw,48px);margin-top:44px;max-width:22ch}
+h2{font-size:clamp(24px,3vw,32px);margin:60px 0 14px}
+h3{font-size:20px;margin:26px 0 6px}
+.lede{font-size:clamp(18px,2vw,21px);max-width:62ch;margin:18px 0 0}
+.note{color:var(--muted);font-size:15px}
+.slate{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:34px 0 0;border:2px solid var(--ink);border-radius:6px;overflow:hidden}
+.slate div{padding:18px 18px 16px;border-right:2px solid var(--ink)}
+.slate div:last-child{border-right:0}
+.slate b{display:block;font:700 clamp(28px,3.6vw,40px)/1 Literata,Georgia,serif;color:var(--sea)}
+.slate span{display:block;margin-top:8px;font-size:15px;color:var(--muted)}
+.slate div:nth-child(2) b{color:var(--coral)}
+nav.toc{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:2;margin-top:30px}
+nav.toc .wrap{display:flex;gap:22px;overflow-x:auto;padding-block:12px;font-size:15px;white-space:nowrap}
+nav.toc a{flex:none;text-decoration:none;color:var(--ink)}
+nav.toc a:hover{color:var(--sea)}
+table{width:100%;border-collapse:collapse;font-size:15.5px;margin-top:10px}
+th,td{text-align:left;vertical-align:top;padding:12px 10px;border-bottom:1px solid var(--line)}
+th{font-size:14px;color:var(--muted);font-weight:700}
+td.n{font:700 18px Literata,Georgia,serif;color:var(--sea);width:2.2em}
+td.e{white-space:nowrap}
+.pill{display:inline-block;padding:1px 9px;border-radius:99px;font-size:13px;font-weight:700;background:var(--wash)}
+.scroll{overflow-x:auto}
+.outline{counter-reset:s;list-style:none;padding:0;margin:18px 0 0}
+.outline li{counter-increment:s;position:relative;padding:16px 0 16px 64px;border-bottom:1px solid var(--line)}
+.outline li::before{content:counter(s);position:absolute;left:0;top:14px;width:44px;height:44px;border-radius:50%;background:var(--sea);color:var(--bg);display:grid;place-items:center;font:700 18px Literata,Georgia,serif}
+.outline b{display:block;font-size:18px}
+.outline p{margin:4px 0 0}
+.cta{background:var(--wash);border-left:5px solid var(--coral);padding:18px 22px;margin:24px 0 0;border-radius:4px}
+.cta p{margin:6px 0 0}
+.good{background:var(--wash);padding:16px 20px;border-radius:6px;margin-top:16px}
+ul.src{columns:2 280px;padding-left:18px;font-size:15px}
+.dirs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px;margin-top:20px}
+.dir{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--bg)}
+.dir:hover{border-color:var(--sea)}
+.dir i{display:block;aspect-ratio:16/9;background:#222 center/cover}
+.dir div{padding:14px 16px 16px}
+.dir b{display:block;font:700 20px Literata,Georgia,serif;color:var(--sea)}
+.dir span{font-size:15px;color:var(--muted)}
+footer{margin-top:72px;padding:28px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:15px}
+@media(max-width:700px){.slate{grid-template-columns:repeat(2,minmax(0,1fr))}.slate div:nth-child(2){border-right:0}.slate div:nth-child(-n+2){border-bottom:2px solid var(--ink)}}
+@media(max-width:600px){table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:7em;text-align:start;width:auto}.stack td::before{content:attr(data-l);float:inline-start;width:6.5em;margin-inline-start:-7em;font-weight:700;color:var(--muted);font-size:13px}.stack td:empty{display:none}.outline li{padding-left:56px}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+<header class="top"><div class="wrap"><span><b>Impact Sidekick</b> · prepared for Lindsay Hadley, Harbor Fund</span><span>Checked read-only on November 23, 2026</span></div></header>
+
+<main>
+<div class="wrap">
+<h1>Harbor Fund: your story has outgrown your website</h1>
+<p class="lede">This year Variety reported $15 million raised from 82 donors and a goal of $100 million, and you held your third Film Forum at Sundance Mountain Resort in June. harbor-fund.org still reads © 2024, still describes the Montana Forum as upcoming, and gives a would-be patron no way to reach you from the homepage.</p>
+<p class="lede">Those two fixes matter most. After them come search basics: all 49 pages share one title and one description, so Google has little to tell your films apart.</p>
+
+<div class="slate" role="list">
+<div role="listitem"><b>$15M</b><span>raised from 82 donors (Variety, July 2026), shown nowhere on the site</span></div>
+<div role="listitem"><b>0</b><span>contact links, emails or signups on the homepage</span></div>
+<div role="listitem"><b>49 of 49</b><span>pages with the same title and meta description</span></div>
+<div role="listitem"><b>100</b><span>mobile speed score, out of 100: keep this in any redesign</span></div>
+</div>
+</div>
+
+<nav class="toc" aria-label="Sections"><div class="wrap">
+<a href="#designs">Design directions</a><a href="#gaps">Top gaps</a><a href="#outline">Homepage outline</a><a href="#details">Audit details</a><a href="#sources">Sources</a>
+</div></nav>
+
+<div class="wrap">
+<h2 id="designs">Five design directions</h2>
+<p>Five very different takes on the homepage outlined below. Each one has the full homepage and a "Become a patron" page (use the button in its header), works on a phone, and uses your logo, photos and type. They're kept light so the pages stay fast.</p>
+<div class="dirs">
+<a class="dir" href="design-1-the-slate.html"><i style="background-image:url(img/hero-conch.jpg)"></i><div><b>1. The Slate</b><span>Your black and off-white with Onest at poster scale, and a clapperboard stripe running through.</span></div></a>
+<a class="dir" href="design-2-premiere.html"><i style="background-image:url(img/forum-theater.jpg)"></i><div><b>2. Premiere</b><span>A dark theater: a letterboxed Forum reel, a film-strip slate, end credits and a ticket for patrons.</span></div></a>
+<a class="dir" href="design-3-program.html"><i style="background-image:url(img/film-by-any-means.jpg)"></i><div><b>3. Festival Program</b><span>A printed festival guide: condensed poster type, ruled listings and one cobalt accent.</span></div></a>
+<a class="dir" href="design-4-safe-harbor.html"><i style="background-image:url(img/necker-island.jpg)"></i><div><b>4. Safe Harbor</b><span>Deep water, a lighthouse beam across the hero, and the evergreen fund drawn as a loop.</span></div></a>
+<a class="dir" href="design-5-patron-memo.html"><i style="background-image:url(img/montana-group.jpg)"></i><div><b>5. Patron Memo</b><span>An investor memo for philanthropists: numbers first, a capital-flow diagram and the slate as a portfolio.</span></div></a>
+</div>
+<p class="note">Mock-ups only: the forms don't send anything, and film descriptions use only what's on your site or in the Variety piece.</p>
+
+<h2 id="gaps">Top 8 gaps, ranked by impact on donors and reach</h2>
+<p class="note">Effort: small is under a day, medium is a few days, large is an ongoing program.</p>
+<div class="scroll">
+<table class="stack">
+<thead><tr><th>#</th><th>Gap</th><th>What we found</th><th>Fix</th><th>Effort</th></tr></thead>
+<tbody>
+<tr><td class="n">1</td><td><b>The site doesn't show your momentum</b></td><td>Variety (July 2, 2026) reports $15M from 82 donors, $10M across 22 projects and a $100M goal. Forbes covered the same goal on Aug 31. None of this, and no press link, appears on the site. Every page footer says © 2024.</td><td>A proof strip on the homepage (raised, donors, projects, films released) plus an "In the press" section with the Variety and Forbes pieces.</td><td class="e"><span class="pill">Small</span></td></tr>
+<tr><td class="n">2</td><td><b>No next step for a would-be patron</b></td><td>The homepage nav is Portfolio, Film Slate and Who We Are. There's no contact link, email, phone or signup. A contact page with a form exists at /contact, but nothing on the homepage links to it.</td><td>One clear primary button, "Become a patron," on every page, plus "Pitch a project" for filmmakers and Contact in the nav and footer.</td><td class="e"><span class="pill">Small</span></td></tr>
+<tr><td class="n">3</td><td><b>The Film Forum page is a year behind</b></td><td>It lists Crazy Mountain Ranch under "Past Forum" yet says you are "now preparing" for it in September 2025, and its form asks about "the upcoming Montana Forum." The June 2026 Forum at Sundance Mountain Resort, with Utah as title sponsor (Variety), isn't mentioned.</td><td>Add the 2026 Sundance Forum with photos, then a "Request an invitation to the next Forum" form.</td><td class="e"><span class="pill">Small</span></td></tr>
+<tr><td class="n">4</td><td><b>No way to stay in touch</b></td><td>There is no email signup anywhere in the sitemap's 49 pages. The only forms are the contact and Film Forum forms.</td><td>A short "Slate updates" list (a few emails a year) for donors, filmmakers and press, in the homepage and footer.</td><td class="e"><span class="pill">Small</span></td></tr>
+<tr><td class="n">5</td><td><b>Every page looks the same to Google</b></td><td>All 49 pages in the sitemap have the title "Harbor Fund" and the same meta description. The HTML of every page has more than one H1: Film Slate has 44, Portfolio has 38.</td><td>A unique title and description per page (for example "Evicted — Harbor Fund"), one H1 per page, film titles as H2s.</td><td class="e"><span class="pill">Small</span></td></tr>
+<tr><td class="n">6</td><td><b>Thin search reach beyond your name</b></td><td>#1 for "Harbor Fund film" and #5 for "social impact film fund nonprofit." Not on page one for "impact film fund Utah" or "film fund for social impact films donate."</td><td>A "How it works for donors" page and fuller film pages (logline, cause, status, partners) so each film can rank on its own.</td><td class="e"><span class="pill">Medium</span></td></tr>
+<tr><td class="n">7</td><td><b>Video isn't working for you yet</b></td><td>The YouTube channel has 56 subscribers and 9 videos. The homepage links out to it but embeds nothing.</td><td>Embed a short Forum reel or trailer on the homepage and film pages, with links back to the patron form.</td><td class="e"><span class="pill">Small</span></td></tr>
+<tr><td class="n">8</td><td><b>A few accessibility errors</b></td><td>WAVE on the homepage: 2 errors, 4 contrast errors, AIM score 7.4 of 10. One of the two homepage images has no alt text.</td><td>Alt text on images, darker text where contrast fails, labels on icon links.</td><td class="e"><span class="pill">Small</span></td></tr>
+</tbody></table>
+</div>
+
+<div class="good"><b>What's already working:</b> the homepage scores 100 out of 100 for mobile speed (first content at 1.0 s), your name ranks first on Google, and your advisory board (Patty Jenkins, Katie Couric, Mark Cuban, Mark Burnett and more) is a credibility asset few funds have.</div>
+
+<h2 id="outline">The homepage we'd build</h2>
+<p>Your donors give large gifts, so a small-dollar Donate button isn't the main move. The page should lead three audiences to the right door: patrons, filmmakers and press. Here is the order, what each section says, and the one clear next step.</p>
+
+<ol class="outline">
+<li><b>Header</b><p>Logo, then Portfolio · Film Slate · Film Forum · About · Contact. On the right, one button: <strong>Become a patron</strong>.</p></li>
+<li><b>Hero</b><p>Your line stays: "Films that matter." Under it, one sentence on the model: a nonprofit, venture-style fund that puts philanthropic capital into film and TV for the public good and recycles returns into the next film. Primary button: Become a patron. Secondary link: Pitch a project.</p></li>
+<li><b>Proof strip</b><p>Four numbers in a row: dollars raised, donors, projects funded, films released. We'd use the current figures from your team. Variety's July count was $15M, 82 donors and 22 projects.</p></li>
+<li><b>How it works</b><p>Your seven-step model, cut to four: Source, Raise, Invest, Return. One line each, so a donor sees in ten seconds where the money goes and how it comes back to the fund.</p></li>
+<li><b>On the slate</b><p>Three to six film cards with poster, logline and cause, for example Evicted, By Any Means and Valley of the Heart. Each links to its film page.</p></li>
+<li><b>The Harbor Film Forum</b><p>Photos from Necker Island, Montana and Sundance, one line on who attends, and a button: Request an invitation.</p></li>
+<li><b>In the press</b><p>Variety and Forbes headlines with a short pull quote each, linked to the articles.</p></li>
+<li><b>People</b><p>Lindsay and the founding team, then the advisory board names. This is where trust is earned.</p></li>
+<li><b>Why film</b><p>The Ebert line, "The movies are like a machine that generates empathy," as a full-width closing band over a still from one of your films.</p></li>
+<li><b>Footer</b><p>Three doors (Patrons, Filmmakers, Press), a "Slate updates" email signup, the Salt Lake City address, Instagram and YouTube, and the current year.</p></li>
+</ol>
+
+<div class="cta"><b>The one clear next step for supporters</b><p>"Become a patron" opens a short form: name, email, and what they're interested in (giving, attending a Forum, or co-investing in a film). Each one goes straight to your team for a personal follow-up. Every section above points back to it.</p></div>
+<p class="note">See this outline built out five ways under <a href="#designs">Design directions</a> above.</p>
+
+<h2 id="details">Audit details</h2>
+<h3>Page speed (Google PageSpeed Insights, mobile)</h3>
+<p>Homepage: Performance 100, Accessibility 92, Best Practices 96, SEO 100. First and largest content at 1.0 s, no blocking time. Run at 8:48 AM MT; lab scores move a few points between runs. There wasn't enough real-visitor data for Google to report field results.</p>
+<h3>Site crawl (49 pages in the sitemap)</h3>
+<p>All 49 pages return normally, with no dead pages. Every page has the title "Harbor Fund," the same meta description and more than one H1. Two pages have forms: /contact and /harbor-film-forum. All footers read © 2024. The contact page offers General Contact and Pitch Content options, but the homepage doesn't link to it.</p>
+<h3>Google search (signed-in browser, may be slightly personalized)</h3>
+<div class="scroll"><table class="stack"><thead><tr><th>Search</th><th>Harbor Fund's position</th><th>Who ranks</th></tr></thead><tbody>
+<tr><td>Harbor Fund film</td><td>#1</td><td>Also Variety, Instagram, Causeartist, Forbes</td></tr>
+<tr><td>social impact film fund nonprofit</td><td>#5</td><td>Ford Foundation JustFilms, Together Films, Sundance, Inside Philanthropy</td></tr>
+<tr><td>film fund for social impact films donate</td><td>Not on page one</td><td>Sundance, From the Heart Productions, Ford Foundation, Impact Partners</td></tr>
+<tr><td>impact film fund Utah</td><td>Not on page one</td><td>Utah Film Center, Impact Partners, Utah Film Commission, Redford Center</td></tr>
+</tbody></table></div>
+<h3>Social and ads</h3>
+<p>YouTube: 56 subscribers, 9 videos. Google's listing for your Instagram shows 5.7K+ followers. Google's Ads Transparency Center shows no ads pointing to harbor-fund.org.</p>
+<h3>How peers handle the next step</h3>
+<p>Impact Partners puts "Submit Your Film" in its main nav with a clear letter-of-inquiry first step, plus an email signup and a "150+ films supported" proof number on the homepage. The Redford Center keeps Donate and an email signup on every page, next to an Impact Fund section.</p>
+
+<h2 id="sources">Sources and method</h2>
+<p class="note">All checks were read-only in Chrome on November 23, 2026. Nothing was submitted or signed up for.</p>
+<ul class="src">
+<li><a href="https://harbor-fund.org/">harbor-fund.org homepage</a></li>
+<li><a href="https://harbor-fund.org/sitemap.xml">Harbor Fund sitemap</a></li>
+<li><a href="https://harbor-fund.org/contact">Contact page</a></li>
+<li><a href="https://harbor-fund.org/harbor-film-forum">Harbor Film Forum page</a></li>
+<li><a href="https://harbor-fund.org/about">About page</a></li>
+<li><a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fharbor-fund.org%2F&form_factor=mobile">PageSpeed Insights: homepage</a></li>
+<li><a href="https://wave.webaim.org/report#/https://harbor-fund.org/">WAVE: homepage</a></li>
+<li><a href="https://variety.com/2026/film/news/harbor-fund-participant-social-impact-1236800942/">Variety, July 2, 2026</a></li>
+<li><a href="https://www.forbes.com/sites/eshachhabra/2026/08/31/inside-harbor-funds-100m-bet-on-social-impact-films-in-hollywood/">Forbes, August 31, 2026</a></li>
+<li><a href="https://www.youtube.com/@HarborFund">YouTube channel</a></li>
+<li><a href="https://adstransparency.google.com/?region=anywhere&domain=harbor-fund.org">Google Ads Transparency Center</a></li>
+<li><a href="https://impactpartnersfilm.com/">Impact Partners homepage</a></li>
+<li><a href="https://www.redfordcenter.org/">Redford Center homepage</a></li>
+</ul>
+</div>
+</main>
+<footer><div class="wrap">Prepared by Impact Sidekick · impactsidekick.com · marc@impactsidekick.com</div></footer>
+</body>
+</html>

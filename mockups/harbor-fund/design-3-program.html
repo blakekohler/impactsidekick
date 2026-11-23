@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbor Fund · Direction 3: Festival Program</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Onest:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Festival Program: a printed festival guide. Condensed poster type, ruled columns, one cobalt accent, listings instead of cards. */
+:root{--ink:#111;--paper:#fff;--cob:#1F3DD6;--mute:#5d5d5d;--rule:#111}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 Onest,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}img{display:block;max-width:100%}
+.wrap{max-width:1240px;margin:0 auto;padding:0 max(4vw,18px)}
+.disp{font-family:"Big Shoulders Display",Impact,sans-serif;font-weight:900;text-transform:uppercase;line-height:.88}
+:focus-visible{outline:3px solid var(--cob);outline-offset:3px}
+header.bar{border-bottom:2px solid var(--rule);position:sticky;top:0;background:var(--paper);z-index:10}
+header.bar .wrap{display:flex;align-items:center;gap:22px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;letter-spacing:.16em}
+nav.main{display:flex;gap:0;margin-left:auto}
+nav.main a{padding:0 14px;text-decoration:none;font-weight:500;font-size:15px;border-left:1px solid #ccc;line-height:22px}
+nav.main a:hover{color:var(--cob)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;background:var(--cob);color:#fff;text-decoration:none;font:700 15px Onest,sans-serif;border:0;cursor:pointer}
+.btn:hover{background:var(--ink)}
+.btn.out{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn.out:hover{background:var(--ink);color:#fff}
+.cover{display:grid;grid-template-columns:1.1fr .9fr;border-bottom:2px solid var(--rule)}
+.cover .left{padding:clamp(34px,5vw,64px) max(4vw,18px) 40px;display:flex;flex-direction:column;justify-content:space-between;gap:30px}
+.cover .ed{display:flex;justify-content:space-between;font-weight:700;font-size:14px;border-bottom:2px solid var(--rule);padding-bottom:10px}
+.cover h1{font-size:clamp(78px,13vw,200px);margin:0;color:var(--ink)}
+.cover h1 span{color:var(--cob)}
+.cover p{font-size:clamp(17px,1.6vw,20px);max-width:48ch;margin:0}
+.cover .right{background:url(img/hero-conch.jpg) 40% 30%/cover;min-height:520px;border-left:2px solid var(--rule)}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.figs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:2px solid var(--rule)}
+.figs div{padding:22px max(2vw,14px);border-right:1px solid #bbb}
+.figs div:last-child{border:0}
+.figs b{display:block;font:900 clamp(56px,7vw,100px)/.9 "Big Shoulders Display",sans-serif;color:var(--cob)}
+.figs span{font-weight:500}
+.src{font-size:13px;color:var(--mute);padding:8px 0}
+section{border-bottom:2px solid var(--rule);padding:clamp(48px,7vw,88px) 0}
+.sec-h{display:grid;grid-template-columns:220px 1fr;gap:28px;align-items:start}
+.sec-h .lab{font-weight:700;font-size:14px;border-top:6px solid var(--cob);padding-top:10px}
+h2{font-size:clamp(48px,7vw,104px);margin:0 0 14px}
+.lead{font-size:clamp(18px,1.8vw,21px);max-width:60ch;margin:0}
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:36px;border-top:2px solid var(--rule)}
+.steps div{padding:18px 18px 0 0;border-right:1px solid #ccc;margin-right:18px}
+.steps div:last-child{border:0}
+.steps b{font:900 44px/1 "Big Shoulders Display",sans-serif;text-transform:uppercase;display:block;margin-bottom:8px}
+.listing{margin-top:34px;border-top:2px solid var(--rule)}
+.row{display:grid;grid-template-columns:70px 150px 1fr 170px;gap:20px;align-items:center;padding:14px 0;border-bottom:1px solid #ccc;text-decoration:none}
+.row .no{font:900 34px "Big Shoulders Display",sans-serif;color:var(--cob)}
+.row .th{aspect-ratio:16/10;background:#ddd center/cover}
+.row h3{font:900 clamp(30px,3.4vw,46px)/.95 "Big Shoulders Display",sans-serif;text-transform:uppercase;margin:0}
+.row p{margin:4px 0 0;color:#333;font-size:15.5px}
+.row .k{font-weight:700;font-size:14px;text-align:right}
+.sched{margin-top:34px;border-top:2px solid var(--rule)}
+.slot{display:grid;grid-template-columns:220px 1fr 1fr;gap:28px;padding:24px 0;border-bottom:1px solid #ccc;align-items:start}
+.slot time{font:900 40px/.95 "Big Shoulders Display",sans-serif;text-transform:uppercase}
+.slot h3{margin:0 0 6px;font-size:22px}
+.slot .ph{aspect-ratio:16/9;background:#ddd center/cover}
+.press{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:30px;border-top:2px solid var(--rule)}
+.press a{padding:22px 22px 22px 0;text-decoration:none;border-right:1px solid #ccc}
+.press a+a{padding-left:22px;border:0}
+.press b{font:900 44px "Big Shoulders Display",sans-serif;color:var(--cob);text-transform:uppercase}
+.press h3{font-size:22px;margin:6px 0;line-height:1.25}
+.press a:hover h3{text-decoration:underline}
+.jury{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:30px;border-top:2px solid var(--rule)}
+.jury div{padding:16px 16px 16px 0}
+.jury b{display:block;font-size:20px}
+.advs{columns:3 220px;margin-top:26px;font-size:19px;font-weight:500;column-rule:1px solid #ccc}
+.advs span{display:block;break-inside:avoid;padding:3px 0}
+.closing{background:var(--cob);color:#fff;border:0}
+.closing blockquote{margin:0;font:900 clamp(56px,9vw,140px)/.86 "Big Shoulders Display",sans-serif;text-transform:uppercase;max-width:14ch}
+.closing cite{display:block;margin-top:16px;font-style:normal;font-weight:700}
+footer{background:var(--ink);color:#eee}
+footer .wrap{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:30px;padding-block:52px}
+footer h4{margin:0 0 10px;font:900 22px "Big Shoulders Display",sans-serif;text-transform:uppercase;letter-spacing:.04em}
+footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.signup{display:flex;margin-top:12px;max-width:420px}
+.signup input{flex:1;min-height:48px;border:0;padding:0 14px;font:16px Onest,sans-serif}
+.legal{border-top:1px solid #333;padding:16px 0;font-size:13.5px;color:#aaa}
+/* Patron page */
+.pp-cover{display:grid;grid-template-columns:1fr 1fr;border-bottom:2px solid var(--rule)}
+.pp-cover .l{padding:clamp(40px,6vw,80px) max(4vw,18px)}
+.pp-cover h1{font-size:clamp(70px,10vw,150px);margin:0 0 16px}
+.pp-cover .r{background:url(img/necker-session.jpg) center/cover;min-height:420px;border-left:2px solid var(--rule)}
+.pp-body{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(24px,5vw,60px);padding:56px 0}
+form,.form-ok{border-top:6px solid var(--cob);padding-top:18px}
+label{display:block;font-weight:700;margin:16px 0 6px;font-size:15px}
+input[type=text],input[type=email],textarea{width:100%;min-height:48px;padding:10px 12px;border:0;border-bottom:2px solid var(--ink);font:17px Onest,sans-serif;background:#F3F4F8}
+textarea{min-height:100px}
+.opts{border-top:2px solid var(--rule)}
+.opt{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid #ccc;cursor:pointer;margin:0;font-weight:400}
+.opt input{width:20px;height:20px;accent-color:var(--cob);margin-top:3px}
+.opt b{display:block;font:900 26px/1 "Big Shoulders Display",sans-serif;text-transform:uppercase}
+.form-err{color:#B42318;font-weight:700;min-height:1.4em;margin:10px 0 0}
+.demo{font-size:13px;color:var(--mute)}
+.pp-body ol{padding-left:0;list-style:none;counter-reset:w;border-top:2px solid var(--rule)}
+.pp-body ol li{counter-increment:w;display:grid;grid-template-columns:60px 1fr;padding:14px 0;border-bottom:1px solid #ccc}
+.pp-body ol li::before{content:counter(w);font:900 34px "Big Shoulders Display",sans-serif;color:var(--cob)}
+.faq details{border-bottom:1px solid #ccc;padding:14px 0}
+.faq summary{cursor:pointer;font-weight:700;font-size:18px}
+@media(max-width:960px){nav.main{display:none}.cover,.pp-cover{grid-template-columns:1fr}.cover .right,.pp-cover .r{min-height:320px;border-left:0;border-top:2px solid var(--rule)}.sec-h{grid-template-columns:1fr;gap:10px}.slot{grid-template-columns:1fr}.row{grid-template-columns:50px 110px 1fr}.row .k{display:none}.pp-body{grid-template-columns:1fr}footer .wrap{grid-template-columns:1fr}.steps,.jury{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.figs{grid-template-columns:repeat(2,minmax(0,1fr))}.figs div:nth-child(-n+2){border-bottom:1px solid #bbb}.figs div:nth-child(2){border-right:0}.row{grid-template-columns:42px 1fr}.row .th{display:none}.press{grid-template-columns:1fr}.press a{border-right:0;border-bottom:1px solid #ccc}.press a+a{padding-left:0}.steps{grid-template-columns:1fr}.steps div{border-right:0;border-bottom:1px solid #ccc;padding-bottom:14px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+[style*=film-by-any-means]{background-position:50% 22%!important}
+</style>
+</head>
+<body>
+<header class="bar"><div class="wrap">
+<a class="brand" href="#top" aria-label="Harbor Fund home"><span id="mk"></span><span>HARBOR</span></a>
+<nav class="main" aria-label="Main"><a href="#slate">Film Slate</a><a href="#forum">Film Forum</a><a href="#how">How it works</a><a href="#people">About</a><a href="#contact">Contact</a></nav>
+<a class="btn" href="#patron" data-nav="patron">Become a patron</a>
+</div></header>
+
+<main data-view="home" id="top">
+<div class="cover">
+<div class="left">
+<div class="ed"><span>Harbor Fund</span><span>Salt Lake City</span></div>
+<h1 class="disp">Films<br>that <span>matter</span></h1>
+<p>A nonprofit, venture-style film fund. We put philanthropic capital into film and television for the public good, and recycle the returns into the next story.</p>
+<div class="ctas"><a class="btn" href="#patron">Become a patron</a><a class="btn out" href="#contact">Pitch a project</a></div>
+</div>
+<div class="right" role="img" aria-label="A performer at the Harbor Film Forum"></div>
+</div>
+<div class="figs" id="proof"></div>
+<div class="wrap"><p class="src" id="proofnote"></p></div>
+
+<section id="how"><div class="wrap">
+<div class="sec-h"><span class="lab">How it works</span><div><h2 class="disp">The model</h2><p class="lead" id="goal"></p></div></div>
+<div class="steps" id="steps"></div>
+</div></section>
+
+<section id="slate"><div class="wrap">
+<div class="sec-h"><span class="lab">The slate</span><div><h2 class="disp">In the program</h2><p class="lead">Documentaries, features and series that heal, inspire and transform.</p></div></div>
+<div class="listing" id="films"></div>
+</div></section>
+
+<section id="forum"><div class="wrap">
+<div class="sec-h"><span class="lab">Harbor Film Forum</span><div><h2 class="disp">The schedule</h2><p class="lead">Invitation-only gatherings where filmmakers pitch directly to patrons.</p></div></div>
+<div class="sched" id="forums"></div>
+<p style="margin-top:26px"><a class="btn" href="#patron">Request an invitation</a></p>
+</div></section>
+
+<section id="press"><div class="wrap">
+<div class="sec-h"><span class="lab">Press</span><div><h2 class="disp">Notices</h2></div></div>
+<div class="press" id="pressList"></div>
+</div></section>
+
+<section id="people"><div class="wrap">
+<div class="sec-h"><span class="lab">People</span><div><h2 class="disp">Who we are</h2></div></div>
+<div class="jury" id="team"></div>
+<p style="font-weight:700;margin:34px 0 0;border-top:2px solid var(--rule);padding-top:10px">Advisory board</p>
+<div class="advs" id="adv"></div>
+</div></section>
+
+<section class="closing"><div class="wrap"><blockquote id="q"></blockquote><cite id="qa"></cite></div></section>
+</main>
+
+<main data-view="patron" hidden>
+<div class="pp-cover">
+<div class="l"><div class="ed" style="display:flex;justify-content:space-between;font-weight:700;font-size:14px;border-bottom:2px solid var(--rule);padding-bottom:10px;margin-bottom:28px"><span>Become a patron</span><span>Harbor Fund</span></div>
+<h1 class="disp">Join the<br><span style="color:var(--cob)">patrons</span></h1>
+<p class="lead">Patrons give grants to the fund, preview the slate and meet the filmmakers at the Forum. Tell us a little about yourself, and our team will follow up personally.</p></div>
+<div class="r" role="img" aria-label="A session at the Harbor Film Forum"></div>
+</div>
+<div class="wrap pp-body">
+<div data-patron-form>
+<form novalidate>
+<label for="n">Your name</label><input id="n" name="name" type="text" autocomplete="name">
+<label for="e">Email</label><input id="e" name="email" type="email" autocomplete="email">
+<label id="il">I’m interested in</label>
+<div class="opts" role="radiogroup" aria-labelledby="il" id="opts"></div>
+<label for="m">Anything you’d like us to know (optional)</label><textarea id="m" name="msg"></textarea>
+<p class="form-err" aria-live="polite"></p>
+<button class="btn" type="submit" style="width:100%">Send to the Harbor team</button>
+<p class="demo">Mock-up: this form doesn’t send anything yet.</p>
+</form>
+<div class="form-ok" hidden tabindex="-1"><h2 class="disp" style="font-size:64px">Thank you, <span data-first></span></h2><p>Someone from the Harbor team will reach out personally within a few days.</p><a class="btn out" href="#top">Back to the homepage</a></div>
+</div>
+<div><h2 class="disp" style="font-size:56px">What your gift does</h2><ol id="why"></ol><div class="faq" id="faq" style="margin-top:26px"></div></div>
+</div>
+</main>
+
+<footer id="contact"><div class="wrap">
+<div><a class="brand" href="#top" style="color:#fff"><span id="mk2"></span>HARBOR</a><p style="color:#bbb;margin:12px 0 0">Heal. Inspire. Transform.</p>
+<h4 style="margin-top:24px">Slate updates</h4><p style="margin:0;color:#ccc;font-size:15px">A few emails a year on new films and Forums.</p>
+<form class="signup" onsubmit="event.preventDefault();this.innerHTML='<p style=&quot;margin:0&quot;>You’re on the list.</p>'"><input type="email" placeholder="Email address" aria-label="Email address" required><button class="btn" type="submit">Join</button></form></div>
+<div><h4>Three doors</h4><ul><li><a href="#patron">Patrons</a></li><li><a href="#contact">Filmmakers: pitch a project</a></li><li><a href="#press">Press</a></li></ul></div>
+<div><h4>Visit</h4><p style="margin:0" id="addr"></p><ul style="margin-top:14px" id="soc"></ul></div>
+</div><div class="wrap legal">© <span data-year></span> Harbor Fund. All rights reserved.</div></footer>
+
+<script src="shared.js"></script>
+<script>
+{
+const $=id=>document.getElementById(id);
+$('mk').innerHTML=HF.mark('#111','#fff');$('mk2').innerHTML=HF.mark('#fff','#111');
+$('proof').innerHTML=HF.proof.map(p=>`<div><b>${p.n}</b><span>${p.l}</span></div>`).join('');
+$('proofnote').textContent=HF.proofNote;
+$('goal').textContent='We raise grants, invest them in mission-aligned productions and recycle the returns. '+HF.goal;
+$('steps').innerHTML=HF.steps.map(s=>`<div><b>${s.t}</b>${s.d}</div>`).join('');
+$('films').innerHTML=HF.films.map((f,i)=>`<div class="row"><span class="no">${String(i+1).padStart(2,'0')}</span><div class="th" style="background-image:url(img/film-${f.slug}.jpg)" role="img" aria-label="${f.t} key art"></div><div><h3>${f.t}</h3>${f.d?`<p>${f.d}</p>`:''}</div><span class="k">${f.k}</span></div>`).join('');
+$('forums').innerHTML=HF.forums.map(f=>`<div class="slot"><time>${f.y}</time><div><h3>${f.p}</h3><p style="margin:0">${f.d}</p></div><div class="ph" style="background-image:url(img/${f.img}.jpg)" role="img" aria-label="${f.p}"></div></div>`).join('');
+$('pressList').innerHTML=HF.press.map(p=>`<a href="${p.u}"><b>${p.o}</b><h3>${p.h}</h3><span>${p.d}</span>${p.q?`<p style="margin:8px 0 0">${p.q}</p>`:''}</a>`).join('');
+$('team').innerHTML=HF.team.map(t=>`<div><b>${t.n}</b>${t.r}</div>`).join('');
+$('adv').innerHTML=HF.advisors.map(a=>`<span>${a}</span>`).join('');
+$('q').textContent='“'+HF.quote.q+'”';$('qa').textContent='— '+HF.quote.a;
+$('why').innerHTML=HF.steps.map(s=>`<li><span><b>${s.t}.</b> ${s.d}</span></li>`).join('');
+$('faq').innerHTML=HF.faq.map(f=>`<details><summary>${f.q}</summary><p>${f.a}</p></details>`).join('');
+$('opts').innerHTML=HF.interests.map((o,i)=>`<label class="opt"><input type="radio" name="interest" value="${o.v}"${i?'':' checked'}><span><b>${o.t}</b>${o.d}</span></label>`).join('');
+$('addr').innerHTML=HF.address.join('<br>');
+$('soc').innerHTML=HF.social.map(s=>`<li><a href="${s.u}">${s.n}</a></li>`).join('');
+HF.boot();
+}
+</script>
+</body>
+</html>
